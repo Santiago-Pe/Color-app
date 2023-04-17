@@ -8,7 +8,7 @@ export default class Palette extends Component {
 
         // Creat new array of colors and pass down props
         const colorBoxes = this.props.colors.map(color => (
-            <ColorBox background={color.color} name={color.name}/>
+            <ColorBox background={color.color} name={color.name} key={color.name}/>
         ));
         return (
           <div className="Palette">
