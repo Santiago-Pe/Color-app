@@ -11,6 +11,7 @@ export default class ColorBox extends Component{
     constructor(props){
         super(props);
         /* ---------- States ---------- */
+        // State to show a message when the user wants get color
         this.state = { copied: false}
 
         /* ---------- Binding Functions ---------- */
@@ -18,17 +19,22 @@ export default class ColorBox extends Component{
     }
 
     /* ---------- Functions ---------- */
+
+    // Manipulation of state to trigger screen
     changeCopyState ()  {
         this.setState({copied: true});
         setTimeout(() => {
             this.setState({copied: false})
         }, 1500)
-        console.log("copiado")
     }
+
     /* ---------- Render ---------- */
     render() {
+
+        // Destructuring props and states
         const {name, background} = this.props
         const {copied} = this.state
+
         return(
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>  
                 <div className="ColorBox" style={{background: background}}>
