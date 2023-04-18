@@ -35,20 +35,6 @@ function generatePalette (starterPalette){
             });
         }
     }
-    // for (let color of starterPalette.colors) {
-    //     const scale = getScale(color.color, 10).reverse();
-    //     for (let i in scale) {
-    //       const newColor = {
-    //         name: `${color.name} ${levels[i]}`,
-    //         id: color.name.toLowerCase().replace(/ /g, "-"),
-    //         hex: scale[i],
-    //         rgba: color.rgb ? `rgba(${color.rgb}, 1.0)` : chroma(scale[i]).css(),
-    //       };
-    //       newColor.rgb = chroma(newColor.hex).css();
-    //       newPalette.colors[levels[i]].push(newColor);
-    //     }
-    //   }
-
     return newPalette
 }
 

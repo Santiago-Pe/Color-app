@@ -3,6 +3,7 @@ import Slider from 'rc-slider';
  /* ---------- Material UI ---------- */
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
  /* ---------- Styels ---------- */
 import 'rc-slider/assets/index.css';
 import "./Navbar.css"
@@ -11,43 +12,67 @@ class Navbar extends Component {
     constructor(props){
         super(props);
         /* ---------- States ---------- */
-        this.state = {format: "hex" }
+        this.state = {format: "hex", open: false}
         /* ---------- Binding Functions ---------- */
-        this.handleChange = this.handleChange.bind(this)
+        this.handleFormatChange = this.handleFormatChange.bind(this)
+        this.closeSnackbar = this.closeSnackbar.bind(this)
 
     }
+    /* ---------- Fucntions ---------- */
+    closeSnackbar () {
+        this.setState({open: false})
+    }
     /* ---------- Fucntions as props ---------- */
-    handleChange (evt) {
-        this.setState({ format: evt.target.value });
+    handleFormatChange (evt) {
+        this.setState({ format: evt.target.value, open: true });
         this.props.handleChange( evt.target.value )
     }
     /* ---------- render ---------- */
     render() {
         // Destructuring props and states
-        const {level, changeLevel, handleChange} = this.props
+        const {level, changeLevel} = this.props
         const {format} = this.state
 
-        return(
-            <header className="Navbar">
+        return (
+          <header className="Navbar">
             <div className="logo">
-                <a href="">ColorLab</a>
+              <a href="">ColorLab</a>
+              <span class="material-icons">home</span>
             </div>
             <div className="slider-contianer">
-                <span>Level: {level}</span>
-                <div className="slider">
-                <Slider defaultValue={level} min={100} max={900} onAfterChange={changeLevel} step={100}/>
-                </div>
+              <span>Level: {level}</span>
+              <div className="slider">
+                <Slider
+                  defaultValue={level}
+                  min={100}
+                  max={900}
+                  onAfterChange={changeLevel}
+                  step={100}
+                />
+              </div>
             </div>
             <div className="select-container">
-                <Select onChange={this.handleChange} value={format} >
+              <Select onChange={this.handleFormatChange} value={format}>
                 <MenuItem value="hex">HEX - #FFF</MenuItem>
                 <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
-                <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
-                </Select>
+                <MenuItem value="rgba">
+                  RGBA - rgba(255, 255, 255, 1.0)
+                </MenuItem>
+              </Select>
             </div>
-           
-            </header>
-        )
+            <Snackbar
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              open={this.state.open}
+              autoHideDuration={3000}
+              message={
+                <span id="msg-id">Format changed to: {this.state.format.toUpperCase()}</span>
+              }
+              ContentProps={{ "aria-describedby": "msg-id" }}
+              onClose={this.closeSnackbar}
+              action={[<span class="material-icons" onClick={this.closeSnackbar}>close</span>]}
+            />
+          </header>
+        );
     }
 }
 
