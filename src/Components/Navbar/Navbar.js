@@ -37,7 +37,7 @@ class Navbar extends Component {
           <header className="Navbar">
             <div className="logo">
               <a href="">ColorLab</a>
-              <span class="material-icons">home</span>
+              <span className="material-icons">palette</span>
             </div>
             <div className="slider-contianer">
               <span>Level: {level}</span>
@@ -69,7 +69,7 @@ class Navbar extends Component {
               }
               ContentProps={{ "aria-describedby": "msg-id" }}
               onClose={this.closeSnackbar}
-              action={[<span class="material-icons" onClick={this.closeSnackbar}>close</span>]}
+              action={[<span className="material-icons" onClick={this.closeSnackbar}>close</span>]}
             />
           </header>
         );
