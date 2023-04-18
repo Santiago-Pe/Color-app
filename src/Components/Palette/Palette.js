@@ -31,7 +31,7 @@ export default class Palette extends Component {
   /* ---------- Render ---------- */
   render() {
     // Destructuring props and states
-    const { colors, paletteName, emoji, id } = this.props.pallet;
+    const { colors, paletteName, emoji, id } = this.props.palette;
     const { level, format } = this.state;
 
     // Creat new array of colors and pass down props
@@ -42,6 +42,7 @@ export default class Palette extends Component {
         key={color.id}
         id={color.id}
         paletteId={id}
+        showLink={true}
       />
     ));
 
