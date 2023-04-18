@@ -32,6 +32,7 @@ export default class ColorBox extends Component{
     render() {
 
         // Destructuring props and states
+        console.log(this.props)
         const {name, background} = this.props
         const {copied} = this.state
 

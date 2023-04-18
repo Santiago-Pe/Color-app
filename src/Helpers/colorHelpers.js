@@ -17,11 +17,11 @@ function generatePalette (starterPalette){
     for (let level of levels){
         newPalette.colors[level] = [];
     }
-    // generar los colores a partir de los colores iniciales de la paleta
+    // Generate colors from the colors of the initial palette
     for (let color of starterPalette.colors){
-        //  Para cada color inicial, se genera una escala de 10 colores utilizando la función 
+        // Generate a scale of 10 colors for each starting color
         let scaleColor = getScale(color.color, 10).reverse();
-        // Push scales color on my newPallet
+        // Push the color of the scales on my new Pallet
         for(let i in scaleColor){
             newPalette.colors[levels[i]].push({
               name: `${color.name} ${levels[i]}`,
@@ -35,13 +35,26 @@ function generatePalette (starterPalette){
             });
         }
     }
+    // for (let color of starterPalette.colors) {
+    //     const scale = getScale(color.color, 10).reverse();
+    //     for (let i in scale) {
+    //       const newColor = {
+    //         name: `${color.name} ${levels[i]}`,
+    //         id: color.name.toLowerCase().replace(/ /g, "-"),
+    //         hex: scale[i],
+    //         rgba: color.rgb ? `rgba(${color.rgb}, 1.0)` : chroma(scale[i]).css(),
+    //       };
+    //       newColor.rgb = chroma(newColor.hex).css();
+    //       newPalette.colors[levels[i]].push(newColor);
+    //     }
+    //   }
 
     return newPalette
 }
 
 /* ---------- Functions ---------- */
 
-//generar un rango de colores a partir de un color inicial. 
+//Generate colors range from the colors of the initial palette
 function getRange(hexColor) {
   const end = "#fff";
   return [chroma(hexColor).darken(1.4).hex(), hexColor, end];
@@ -49,9 +62,9 @@ function getRange(hexColor) {
 
 function getScale (hexColor, numberOfColors){
      return chroma
-     .scale(getRange(hexColor)) //generar una escala de colores que va desde el color oscuro hasta el blanco, pasando por el color inicial.
-     .mode("lab")//establece el modo de color utilizado para la interpolación 
-     .colors(numberOfColors);//genera un array de colores a partir de la escala y el número de colores deseado.
+     .scale(getRange(hexColor)) //Generate a color scale from white to black, passing the initial color
+     .mode("lab")//Set the color mood using interpolation
+     .colors(numberOfColors);//Generate color matrices from scale and desired color numbers
 }
 
 
