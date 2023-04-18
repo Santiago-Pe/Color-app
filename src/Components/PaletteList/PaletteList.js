@@ -14,7 +14,7 @@ const styles = {
 
     },
     container: {
-        width: "70%",
+        width: "50%",
         display: "flex",
         flexDirection: "column",
         flexWrap: "wrap",
