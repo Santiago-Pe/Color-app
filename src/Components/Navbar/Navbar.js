@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Slider from 'rc-slider';
+import { Link } from "react-router-dom";
  /* ---------- Material UI ---------- */
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,6 +13,7 @@ class Navbar extends Component {
     constructor(props){
         super(props);
         /* ---------- States ---------- */
+        // State for saving color formats and managing notifications.
         this.state = {format: "hex", open: false}
         /* ---------- Binding Functions ---------- */
         this.handleFormatChange = this.handleFormatChange.bind(this)
@@ -19,10 +21,12 @@ class Navbar extends Component {
 
     }
     /* ---------- Fucntions ---------- */
+    //Explciar
     closeSnackbar () {
         this.setState({open: false})
     }
     /* ---------- Fucntions as props ---------- */
+     //Explciar
     handleFormatChange (evt) {
         this.setState({ format: evt.target.value, open: true });
         this.props.handleChange( evt.target.value )
@@ -35,10 +39,10 @@ class Navbar extends Component {
 
         return (
           <header className="Navbar">
-            <div className="logo">
-              <a href="">ColorLab</a>
+            <Link className="logo" to={"/"}>
+              <span>ColorLab</span>
               <span className="material-icons">palette</span>
-            </div>
+            </Link>
             <div className="slider-contianer">
               <span>Level: {level}</span>
               <div className="slider">
