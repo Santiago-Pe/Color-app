@@ -4,29 +4,46 @@ import Palette from "./Components/Palette/Palette";
 import seedColors from "./Services/seedColors";
 import generatePalette from "./Helpers/colorHelpers";
 import PaletteList from "./Components/PaletteList/PaletteList";
-import MiniPalette from "./Components/MiniPalette/MiniPalette";
+import SinglePalette from "./Components/SinglePalette/SinglePalette";
 
 class App extends Component {
-  
-  findPalette (id) {
-    return seedColors.find(function(palette){
-      return palette.id === id
-    })
+  findPalette(id) {
+    return seedColors.find(function (palette) {
+      return palette.id === id;
+    });
   }
   /* ---------- Render ---------- */
-  render (){
+  render() {
     return (
-        
       <Switch>
-        <Route exact path={"/"} render={ (routesProps) => <PaletteList palette={seedColors} {...routesProps}/>}/>
-        <Route exact path={"/palette/:id"} render={ (routesProps) =><Palette pallet={generatePalette(this.findPalette(routesProps.match.params.id))}/>}/>
-        <Route exact path={"/palette/:paletteId/:colorId"} render={()=> <h1>Single Palette</h1>}/>
+        <Route
+          exact
+          path={"/"}
+          render={(routesProps) => (
+            <PaletteList palette={seedColors} {...routesProps} />
+          )}
+        />
+        <Route
+          exact
+          path={"/palette/:id"}
+          render={(routesProps) => (
+            <Palette
+              pallet={generatePalette(
+                this.findPalette(routesProps.match.params.id)
+              )}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={"/palette/:paletteId/:colorId"}
+          render={() => <SinglePalette />}
+        />
       </Switch>
-  /* <div className="">
+      /* <div className="">
        <Palette pallet={generatePalette(seedColors[4])}/>
       </div> */
     );
-
   }
 }
 
