@@ -7,24 +7,24 @@ import { withStyles } from "@material-ui/styles";
 
 /* ---------- Styles ---------- */
 const styles = {
-  colorBox:{
+  colorBox: {
     width: "20%",
-    height: props => props.showFullPalettte ? "25%": "50%",
+    height: (props) => (props.showFullPalettte ? "25%" : "50%"),
     margin: "0 auto",
     display: "inline-block",
     position: "relative",
     cursor: "pointer",
-    marginBottom:" -5px" ,
+    marginBottom: " -5px",
     "&:hover button": {
       opacity: "1",
-      transition: "all 0.5s ease-in"
-    }
+      transition: "all 0.5s ease-in",
+    },
   },
-  text:{
-    color: props => 
-    (chroma(props.background).luminance() <= 0.5 ? "#fff" : "#000")
+  text: {
+    color: (props) =>
+      (chroma(props.background).luminance() <= 0.5 ? "#fff" : "#000")
   },
-  seeMore:{
+  seeMore: {
     background: "rgb(255, 255, 255, 0.3)",
     position: "absolute",
     border: "none",
@@ -41,16 +41,16 @@ const styles = {
     zIndex: "0",
     width: "100%",
     height: "100%",
-    transition: "transform 0.7s", 
-    transform: "scale(0.1)"
+    transition: "transform 0.7s",
+    transform: "scale(0.1)",
   },
-  showOverlay:{
+  showOverlay: {
     opacity: "1",
     transform: "scale(50)",
     zIndex: "10",
-    position: "absolute"
+    position: "absolute",
   },
-  copyMessage:{
+  copyMessage: {
     position: "fixed",
     top: "0",
     left: "0",
@@ -73,19 +73,18 @@ const styles = {
       marginBottom: "0",
       padding: "1rem",
       textTransform: "uppercase",
-      textAlign: "center"
+      textAlign: "center",
     },
-    "& p":{
+    "& p": {
       fontSize: "2rem",
-      fontWeight: "100"
-    }
-
+      fontWeight: "100",
+    },
   },
   showMessage: {
     opacity: "1",
     transform: "scale(1)",
-    transitionDelay:" 0.3s",
-    zIndex: "20"
+    transitionDelay: " 0.3s",
+    zIndex: "20",
   },
   boxContent: {
     position: "absolute",
@@ -95,13 +94,13 @@ const styles = {
     padding: "10px",
     letterSpacing: "1px",
     textTransform: "uppercase",
-    fontSize: "12px"
+    fontSize: "12px",
   },
   coppyButton: {
     width: "100px",
     height: "30px",
     position: "absolute",
-    display:  "2",
+    display: "2",
     top: "50%",
     left: "50%",
     marginLeft: "-50px",
@@ -115,11 +114,11 @@ const styles = {
     border: "none",
     cursor: "pointer",
     textDecoration: "none",
-    opacity: "0"
-  }
+    opacity: "0",
+  },
 };
 
- class ColorBox extends Component {
+class ColorBox extends Component {
   constructor(props) {
     super(props);
     /* ---------- States ---------- */
@@ -128,7 +127,7 @@ const styles = {
 
     /* ---------- Binding Functions ---------- */
     this.changeCopyState = this.changeCopyState.bind(this);
-}
+  }
 
   /* ---------- Functions ---------- */
 
@@ -143,40 +142,48 @@ const styles = {
   /* ---------- Render ---------- */
   render() {
     // Destructuring props and states
-    const { name, background, paletteId, id, showFullPalettte, classes} = this.props;
+    const { name, background, paletteId, id, showFullPalettte, classes } =
+      this.props;
     const { copied } = this.state;
 
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
         <div className={classes.colorBox} style={{ background: background }}>
           <div
-            className={`${classes.copyOverlay} ${copied && classes.showOverlay}`}
+            className={`${classes.copyOverlay} ${
+              copied && classes.showOverlay
+            }`}
             style={{ background: background }}
           ></div>
-          <div className={`${classes.copyMessage}  ${copied && classes.showMessage}`}>
+          <div
+            className={`${classes.copyMessage}  ${
+              copied && classes.showMessage
+            }`}
+          >
             <h1 className={classes.text}>Copied !</h1>
             <p className={classes.text}>{background}</p>
           </div>
           <div>
             <div className={classes.boxContent}>
               <span className={classes.text}>{name}</span>
-             
             </div>
 
-            <button className={`${classes.coppyButton} ${classes.text}`}>Copy</button>
+            <button className={`${classes.coppyButton} ${classes.text}`}>
+              Copy
+            </button>
           </div>
-          {showFullPalettte &&  <Link
-            to={`/palette/${paletteId}/${id}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-
-            <span className={`${classes.seeMore} ${classes.text}`}>More</span>
-          </Link>}
-         
+          {showFullPalettte && (
+            <Link
+              to={`/palette/${paletteId}/${id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <span className={`${classes.seeMore} ${classes.text}`}>More</span>
+            </Link>
+          )}
         </div>
       </CopyToClipboard>
     );
   }
 }
 
-export default  withStyles(styles)(ColorBox);
+export default withStyles(styles)(ColorBox);
