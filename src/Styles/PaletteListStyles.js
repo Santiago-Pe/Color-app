@@ -17,7 +17,12 @@ export default {
     nav: {
         display: "flex",
         widht: "100%",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center",
+        "& a":{
+            color: "white",
+            textDecoration: "none"
+        }
 
     },
     title:{
