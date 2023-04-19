@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 5vh;
+    height: 10vh;
+    background-color: white;
 }
 .logo{
     margin-right: 15px;
