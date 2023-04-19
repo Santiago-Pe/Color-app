@@ -34,7 +34,11 @@ const styles = {
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
         gridGap: "5%"
+    },
+    link:{
+        textDecoration: "none"
     }
+
 }
 
 
@@ -61,7 +65,7 @@ class PaletteList extends Component {
                     <div className={classes.palette}>
 
                     {palette.map((p) => (
-                        <Link to={`/palette/${p.id}`}>
+                        <Link to={`/palette/${p.id}`} className={classes.link}>
                             <MiniPalette 
                             {... p}
                             goToPalete={() => this.goToPalete(p.id)}

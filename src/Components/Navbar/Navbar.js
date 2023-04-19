@@ -33,7 +33,7 @@ class Navbar extends Component {
   /* ---------- render ---------- */
   render() {
     // Destructuring props and states
-    const { level, changeLevel } = this.props;
+    const { level, changeLevel, showingAllColors } = this.props;
     const { format } = this.state;
 
     return (
@@ -42,18 +42,21 @@ class Navbar extends Component {
           <span>ColorLab</span>
           <span className="material-icons">palette</span>
         </Link>
-        <div className="slider-contianer">
-          <span>Level: {level}</span>
-          <div className="slider">
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              onAfterChange={changeLevel}
-              step={100}
-            />
+        {showingAllColors && (
+          <div className="slider-contianer">
+            <span>Level: {level}</span>
+            <div className="slider">
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                onAfterChange={changeLevel}
+                step={100}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="select-container">
           <Select onChange={this.handleFormatChange} value={format}>
             <MenuItem value="hex">HEX - #FFF</MenuItem>
