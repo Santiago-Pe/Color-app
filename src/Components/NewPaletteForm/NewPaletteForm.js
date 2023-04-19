@@ -12,9 +12,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
+import color from "@material-ui/core/colors/amber";
 
+
+
+/* ----------  Width of SideNav ---------- */
 const drawerWidth = 400;
-
+/* ----------  Styles ---------- */
 const styles = (theme) => ({
   root: {
     display: "flex",
@@ -73,97 +77,131 @@ const styles = (theme) => ({
 });
 
 class NewPaletteForm extends React.Component {
-  state = {
-    open: false,
-    background: "",
-  };
+    constructor(props) {
+        super(props);
+        /* ----------  States ---------- */
+        this.state = {
+            open: true,
+            currentColor: "",
+            colorButton: "",
+            colors: [],
+        };
+        /* ---------- Binding Functions ---------- */
+        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleDrawerClose = this.handleDrawerClose.bind(this);
+        this.handleChangeComplete = this.handleChangeComplete.bind(this);
+        this.addColor = this.addColor.bind(this);
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
+    }
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+    /* ----------  Functions ---------- */
 
-  //   TEST
-  handleChange2 = (colors) => {
-    this.setState({ background: colors.rgb });
-  };
+    // Open nav 
+    handleDrawerOpen() {
+        this.setState({ open: true });
+    }
+    // Close nav 
+    handleDrawerClose() {
+        this.setState({ open: false });
+    }
+    // Save colors on state to manage ChromePicker component
+    handleChangeComplete(colors) {
+        // ChromePciker
+        this.setState({ currentColor: colors.rgb });
+        // Button
+        this.setState({ colorButton: colors.hex });
+    }
+    // Add new color to state
+    addColor () {
+        this.setState( {colors:  [...this.state.colors, this.state.colorButton]})
+    }
+    
+    /* ---------- Render ---------- */
+    render() {
+    // Destructuring props and states  
+    console.log(this.state.colors);  
+    const { classes } = this.props;
+    const { open, currentColor, colorButton, colors } = this.state;
 
-  handleChangeComplete = (colors) => {
-    this.setState({ background: colors.rgb });
-  };
-  render() {
-    const { classes, theme } = this.props;
-    const { open } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
+        return (
+            <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+                position="fixed"
+                className={classNames(classes.appBar, {
+                [classes.appBarShift]: open,
+                })}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              Persistent drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <Typography variant="h4" >Desing your Palette</Typography>
-          <div>
-            <Button variant="contained" color="primary">
-              Clear palette
-            </Button>
-            <Button variant="contained" color="secondary">
-              Random color
-            </Button>
-          </div>
-          <ChromePicker
-            color={this.state.background}
-            onChange={this.handleChange2}
-            onChangeComplete={this.handleChangeComplete}
-          />
-          <Button variant="contained" color="secondary">
-            Add new color
-          </Button>
-        </Drawer>
-        <main
-          className={classNames(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className={classes.drawerHeader} />
-        </main>
-      </div>
-    );
-  }
+                <Toolbar disableGutters={!open}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="Open drawer"
+                        onClick={this.handleDrawerOpen}
+                        className={classNames(classes.menuButton, open && classes.hide)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Persistent drawer
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={open}
+                classes={{
+                paper: classes.drawerPaper,
+                }}
+            >
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={this.handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                <Divider />
+                <Typography variant="h4">Desing your Palette</Typography>
+                <div>
+                    <Button variant="contained" color="primary">
+                        Clear palette
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                        Random color
+                    </Button>
+                </div>
+                <ChromePicker
+                color={currentColor}
+                // onChange={this.handleChange2}
+                onChangeComplete={this.handleChangeComplete}
+                />
+                <Button
+                variant="contained"
+                color="secondary"
+                style={{ backgroundColor: colorButton }}
+                onClick={this.addColor}
+                >
+                    Add new color
+                </Button>
+            </Drawer>
+            <main
+                className={classNames(classes.content, {
+                [classes.contentShift]: open,
+                })}
+            >
+                <div className={classes.drawerHeader} />
+                <ul>
+                {
+                    colors.map(color => (
+                        <li>{color}</li>
+                    ))
+                }
+                </ul>
+                
+            </main>
+            </div>
+        );
+    }
 }
 
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
