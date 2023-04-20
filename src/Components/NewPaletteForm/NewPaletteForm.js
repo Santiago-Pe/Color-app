@@ -12,8 +12,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
-import DraggableColorBox from "../DraggableColorBox/DraggableColorBox";
+import DraggableColorList from "../DraggableColorList/DraggableColorList";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { arrayMove } from "react-sortable-hoc";
 
 
 
@@ -98,7 +99,7 @@ class NewPaletteForm extends React.Component {
         this.addColor = this.addColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.deleteColor = this.deleteColor.bind(this)
+        this.deleteColor = this.deleteColor.bind(this)
 
     }
     /* ----------  LyfeCycles ---------- */
@@ -166,6 +167,12 @@ class NewPaletteForm extends React.Component {
       this.props.history.push("/")
 
     }
+    // Array move
+    onSortEnd = ({oldIndex, newIndex}) => {
+      this.setState(({colors}) => ({
+        colors: arrayMove(colors, oldIndex, newIndex),
+      }));
+    };
 
     // Delete palette
     deleteColor (colorName){
@@ -277,14 +284,12 @@ class NewPaletteForm extends React.Component {
               })}
             >
               <div className={classes.drawerHeader} />
-
-              {colors.map((color) => (
-                <DraggableColorBox 
-                key={color.name}
-                color={color.color} 
-                name={color.name} 
-                deleteColor={() => this.deleteColor(color.name)}/>
-              ))}
+              <DraggableColorList 
+                colors={colors} 
+                deleteColor={this.deleteColor}
+                onSortEnd={this.onSortEnd}
+                axis="xy"
+              />
             </main>
           </div>
         );
