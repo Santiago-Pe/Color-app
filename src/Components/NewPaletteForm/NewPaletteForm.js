@@ -88,7 +88,8 @@ class NewPaletteForm extends React.Component {
             currentColor: "",
             colorButton: "",
             colors: [],
-            newName: ""
+            newColorName: "",
+            newPaletteName: ""
         };
         /* ---------- Binding Functions ---------- */
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
@@ -111,6 +112,12 @@ class NewPaletteForm extends React.Component {
         ValidatorForm.addValidationRule('isColorUnique', value => 
            this.state.colors.every(
             ({ color }) => color !== this.state.colorButton
+           )
+        );
+        // custom rule will have name 'isPaletteNameUnique'
+        ValidatorForm.addValidationRule('isPaletteNameUnique', value => 
+           this.props.palettes.every(
+            ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
            )
         );
     }
@@ -136,23 +143,24 @@ class NewPaletteForm extends React.Component {
         e.preventDefault();
         const newColor = {
             color: this.state.colorButton,
-            name: this.state.newName
+            name: this.state.newColorName
         }
-        this.setState( { colors: [...this.state.colors, newColor], newName: "" } )
+        this.setState( { colors: [...this.state.colors, newColor], newColorName: "" } )
     }
     // Tracking Input
     handleChange(e){
-        this.setState({newName: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
     }
     // Save Palette
     handleSubmit (){
 
-      let newName = "Palette Test";
+      let newName = this.state.newPaletteName;
       const newPalette = {
-        name: newName,
+        paletteName: newName,
         id: newName.toLowerCase().replace(/ /g, "-"),
         colors: this.state.colors
       }
+      console.log(newName)
       this.props.saveNewPalette(newPalette);
       this.props.history.push("/")
 
@@ -161,7 +169,7 @@ class NewPaletteForm extends React.Component {
     render() {
     // Destructuring props and states  
     const { classes } = this.props;
-    const { open, currentColor, colorButton, colors, newName } = this.state;
+    const { open, currentColor, colorButton, colors, newColorName, newPaletteName } = this.state;
 
         return (
           <div className={classes.root}>
@@ -188,13 +196,23 @@ class NewPaletteForm extends React.Component {
                 <Typography variant="h6" color="inherit" noWrap>
                   Persistent drawer
                 </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleSubmit}
-                >
-                  Save Palette
-                </Button>
+                <ValidatorForm onSubmit={this.handleSubmit}>
+                  <TextValidator 
+                    name="newPaletteName"
+                    label="Palette Name" 
+                    value={this.state.newPaletteName}
+                    onChange={this.handleChange} 
+                    validators={['required', 'isPaletteNameUnique']}
+                    errorMessages={['this field is required', 'Palette name must be unique']}
+                    />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                  >
+                    Save Palette
+                  </Button>
+                </ValidatorForm>
               </Toolbar>
             </AppBar>
             <Drawer
@@ -228,7 +246,8 @@ class NewPaletteForm extends React.Component {
               />
               <ValidatorForm onSubmit={this.addColor}>
                 <TextValidator 
-                    value={newName} 
+                    value={newColorName} 
+                    name="newColorName"
                     onChange={this.handleChange}
                     validators={['required', 'isColorNameUnique','isColorUnique' ]}
                     errorMessages={['this field is required','Color name must be unique', 'Color already used']}
