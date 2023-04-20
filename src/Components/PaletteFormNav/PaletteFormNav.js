@@ -9,6 +9,34 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Button } from "@material-ui/core";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
+
+/* ----------  Width of SideNav ---------- */
+const drawerWidth = 400;
+/* ----------  Styles ---------- */
+const styles =  (theme) => ({
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: "none",
+  }
+})
 
 class PaletteFormNav extends Component {
   constructor(props) {
@@ -91,4 +119,4 @@ class PaletteFormNav extends Component {
   }
 }
 
-export default PaletteFormNav;
+export default withStyles(styles, { withTheme: true })(PaletteFormNav);
