@@ -96,6 +96,7 @@ class NewPaletteForm extends React.Component {
         this.handleChangeComplete = this.handleChangeComplete.bind(this);
         this.addColor = this.addColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
     /* ----------  LyfeCycles ---------- */
@@ -143,7 +144,19 @@ class NewPaletteForm extends React.Component {
     handleChange(e){
         this.setState({newName: e.target.value})
     }
-    
+    // Save Palette
+    handleSubmit (){
+
+      let newName = "Palette Test";
+      const newPalette = {
+        name: newName,
+        id: newName.toLowerCase().replace(/ /g, "-"),
+        colors: this.state.colors
+      }
+      this.props.saveNewPalette(newPalette);
+      this.props.history.push("/")
+
+    }
     /* ---------- Render ---------- */
     render() {
     // Destructuring props and states  
@@ -155,6 +168,7 @@ class NewPaletteForm extends React.Component {
             <CssBaseline />
             <AppBar
               position="fixed"
+              color="default"
               className={classNames(classes.appBar, {
                 [classes.appBarShift]: open,
               })}
@@ -174,6 +188,13 @@ class NewPaletteForm extends React.Component {
                 <Typography variant="h6" color="inherit" noWrap>
                   Persistent drawer
                 </Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleSubmit}
+                >
+                  Save Palette
+                </Button>
               </Toolbar>
             </AppBar>
             <Drawer

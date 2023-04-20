@@ -3,20 +3,24 @@ export default {
        backgroundColor: "blue",
        height: "100vh",
        display: "flex",
-       alignItems: "flex-start",
+       alignItems: "center",
        justifyContent: "center",
-       paddingBottom: "2rem"
+       padding: "2rem",
+       //width: "100%"
 
     },
     container: {
-        width: "60%",
+        maxWidth: "1080px",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         flexWrap: "wrap",
+        height: "100%",
+        margin: "0 auto"
     },
     nav: {
         display: "flex",
-        widht: "100%",
+        width: "100%",
         justifyContent: "space-between",
         alignItems: "center",
         "& a":{
@@ -30,10 +34,11 @@ export default {
     },
     palette:{
         boxSizing: "border-box",
-        widht: "100%",
+        width: "100%",
         display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5%"
+        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        gap: "10px",
+        row: "10px"
     },
     link:{
         textDecoration: "none"
