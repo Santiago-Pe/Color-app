@@ -98,6 +98,7 @@ class NewPaletteForm extends React.Component {
         this.addColor = this.addColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        //this.deleteColor = this.deleteColor.bind(this)
 
     }
     /* ----------  LyfeCycles ---------- */
@@ -163,6 +164,14 @@ class NewPaletteForm extends React.Component {
       console.log(newName)
       this.props.saveNewPalette(newPalette);
       this.props.history.push("/")
+
+    }
+
+    // Delete palette
+    deleteColor (colorName){
+      this.setState({
+        colors: this.state.colors.filter(color => color.name !== colorName)
+      })
 
     }
     /* ---------- Render ---------- */
@@ -270,7 +279,11 @@ class NewPaletteForm extends React.Component {
               <div className={classes.drawerHeader} />
 
               {colors.map((color) => (
-                <DraggableColorBox color={color.color} name={color.name} />
+                <DraggableColorBox 
+                key={color.name}
+                color={color.color} 
+                name={color.name} 
+                deleteColor={() => this.deleteColor(color.name)}/>
               ))}
             </main>
           </div>
