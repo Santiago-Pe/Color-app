@@ -15,6 +15,8 @@ import { Button } from "@material-ui/core";
 import DraggableColorList from "../DraggableColorList/DraggableColorList";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { arrayMove } from "react-sortable-hoc";
+import { Link } from "react-router-dom";
+import PaletteFormNav from "../PaletteFormNav/PaletteFormNav";
 
 
 
@@ -161,9 +163,9 @@ class NewPaletteForm extends React.Component {
         this.setState({[e.target.name]: e.target.value})
     }
     // Save Palette
-    handleSubmit () {
+    handleSubmit (name) {
 
-      let newName = this.state.newPaletteName;
+      let newName = name;
       const newPalette = {
         paletteName: newName,
         id: newName.toLowerCase().replace(/ /g, "-"),
@@ -201,54 +203,19 @@ class NewPaletteForm extends React.Component {
     /* ---------- Render ---------- */
     render() {
     // Destructuring props and states  
-    const { classes, maxColorBox } = this.props;
+    const { classes, maxColorBox, palettes} = this.props;
     const { open, currentColor, colorButton, colors, newColorName } = this.state;
     let isFullPalette = colors.length >= maxColorBox; 
 
         return (
           <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-              position="fixed"
-              color="default"
-              className={classNames(classes.appBar, {
-                [classes.appBarShift]: open,
-              })}
-            >
-              <Toolbar disableGutters={!open}>
-                <IconButton
-                  color="inherit"
-                  aria-label="Open drawer"
-                  onClick={this.handleDrawerOpen}
-                  className={classNames(
-                    classes.menuButton,
-                    open && classes.hide
-                  )}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" color="inherit" noWrap>
-                  Create your own palette
-                </Typography>
-                <ValidatorForm onSubmit={this.handleSubmit}>
-                  <TextValidator 
-                    name="newPaletteName"
-                    label="Palette Name" 
-                    value={this.state.newPaletteName}
-                    onChange={this.handleChange} 
-                    validators={['required', 'isPaletteNameUnique']}
-                    errorMessages={['this field is required', 'Palette name must be unique']}
-                    />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                  >
-                    Save Palette
-                  </Button>
-                </ValidatorForm>
-              </Toolbar>
-            </AppBar>
+          <PaletteFormNav 
+            classes={classes}
+            open={open}
+            handleDrawerOpen={this.handleDrawerOpen}
+            handleSubmit={this.handleSubmit}
+            palettes = {palettes}
+          />
             <Drawer
               className={classes.drawer}
               variant="persistent"
