@@ -14,8 +14,7 @@ import DraggableColorBox from "../DraggableColorBox/DraggableColorBox";
                 key={color.name}
                 color={color.color} 
                 name={color.name} 
-                deleteColor={() => deleteColor(color.name)}
-      
+                deleteColor={() => deleteColor(color.name)}      
                 />
             ))}
         </div>
