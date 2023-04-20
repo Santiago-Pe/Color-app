@@ -13,6 +13,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import DraggableColorBox from "../DraggableColorBox/DraggableColorBox";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
 
 
@@ -87,15 +88,31 @@ class NewPaletteForm extends React.Component {
             currentColor: "",
             colorButton: "",
             colors: [],
+            newName: ""
         };
         /* ---------- Binding Functions ---------- */
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
         this.handleChangeComplete = this.handleChangeComplete.bind(this);
         this.addColor = this.addColor.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
     }
-
+    /* ----------  LyfeCycles ---------- */
+    componentDidMount() {
+        // custom rule will have name 'isColorNameUnique'
+        ValidatorForm.addValidationRule('isColorNameUnique', value => 
+           this.state.colors.every(
+            ({ name }) => name.toLowerCase() !== value.toLowerCase()
+           )
+        );
+        // custom rule will have name 'isColorUnique'
+        ValidatorForm.addValidationRule('isColorUnique', value => 
+           this.state.colors.every(
+            ({ color }) => color !== this.state.colorButton
+           )
+        );
+    }
     /* ----------  Functions ---------- */
 
     // Open nav 
@@ -114,94 +131,109 @@ class NewPaletteForm extends React.Component {
         this.setState({ colorButton: colors.hex });
     }
     // Add new color to state
-    addColor () {
-        this.setState( {colors:  [...this.state.colors, this.state.colorButton]})
+    addColor (e) {
+        e.preventDefault();
+        const newColor = {
+            color: this.state.colorButton,
+            name: this.state.newName
+        }
+        this.setState( { colors: [...this.state.colors, newColor], newName: "" } )
+    }
+    // Tracking Input
+    handleChange(e){
+        this.setState({newName: e.target.value})
     }
     
     /* ---------- Render ---------- */
     render() {
     // Destructuring props and states  
-    console.log(this.state.colors);  
     const { classes } = this.props;
-    const { open, currentColor, colorButton, colors } = this.state;
+    const { open, currentColor, colorButton, colors, newName } = this.state;
 
         return (
-            <div className={classes.root}>
+          <div className={classes.root}>
             <CssBaseline />
             <AppBar
-                position="fixed"
-                className={classNames(classes.appBar, {
+              position="fixed"
+              className={classNames(classes.appBar, {
                 [classes.appBarShift]: open,
-                })}
+              })}
             >
-                <Toolbar disableGutters={!open}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="Open drawer"
-                        onClick={this.handleDrawerOpen}
-                        className={classNames(classes.menuButton, open && classes.hide)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Persistent drawer
-                    </Typography>
-                </Toolbar>
+              <Toolbar disableGutters={!open}>
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(
+                    classes.menuButton,
+                    open && classes.hide
+                  )}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" color="inherit" noWrap>
+                  Persistent drawer
+                </Typography>
+              </Toolbar>
             </AppBar>
             <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
+              className={classes.drawer}
+              variant="persistent"
+              anchor="left"
+              open={open}
+              classes={{
                 paper: classes.drawerPaper,
-                }}
+              }}
             >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={this.handleDrawerClose}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </div>
-                <Divider />
-                <Typography variant="h4">Desing your Palette</Typography>
-                <div>
-                    <Button variant="contained" color="primary">
-                        Clear palette
-                    </Button>
-                    <Button variant="contained" color="secondary">
-                        Random color
-                    </Button>
-                </div>
-                <ChromePicker
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={this.handleDrawerClose}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              <Typography variant="h4">Desing your Palette</Typography>
+              <div>
+                <Button variant="contained" color="primary">
+                  Clear palette
+                </Button>
+                <Button variant="contained" color="secondary">
+                  Random color
+                </Button>
+              </div>
+              <ChromePicker
                 color={currentColor}
                 // onChange={this.handleChange2}
                 onChangeComplete={this.handleChangeComplete}
+              />
+              <ValidatorForm onSubmit={this.addColor}>
+                <TextValidator 
+                    value={newName} 
+                    onChange={this.handleChange}
+                    validators={['required', 'isColorNameUnique','isColorUnique' ]}
+                    errorMessages={['this field is required','Color name must be unique', 'Color already used']}
                 />
                 <Button
-                variant="contained"
-                color="secondary"
-                style={{ backgroundColor: colorButton }}
-                onClick={this.addColor}
+                    variant="contained"
+                    color="secondary"
+                    style={{ backgroundColor: colorButton, marginTop: "30px" }}
+                    type="submit"
                 >
                     Add new color
                 </Button>
+              </ValidatorForm>
             </Drawer>
             <main
-                className={classNames(classes.content, {
+              className={classNames(classes.content, {
                 [classes.contentShift]: open,
-                })}
+              })}
             >
-                <div className={classes.drawerHeader} />
-                
-                {
-                    colors.map(color => (
-                        <DraggableColorBox color={color}/>
-                    ))
-                }
-                
-                
+              <div className={classes.drawerHeader} />
+
+              {colors.map((color) => (
+                <DraggableColorBox color={color.color} name={color.name} />
+              ))}
             </main>
-            </div>
+          </div>
         );
     }
 }
