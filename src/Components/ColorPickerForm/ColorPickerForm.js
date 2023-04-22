@@ -57,7 +57,7 @@ class ColorPickerForm extends Component {
   /* ---------- Render ---------- */
   render() {
     // Destructuring props / states
-    const { isFullPalette, addColor} = this.props;
+    const { isFullPalette} = this.props;
     const { currentColor, colorButton, newColorName } = this.state;
 
     return (

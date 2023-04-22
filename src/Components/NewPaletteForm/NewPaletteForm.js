@@ -142,7 +142,7 @@ class NewPaletteForm extends React.Component {
   render() {
     // Destructuring props and states
     const { classes, maxColorBox, palettes } = this.props;
-    const { open, currentColor, colorButton, colors, newColorName } =
+    const { open, colors} =
       this.state;
 
     // Bolean to give color box limit

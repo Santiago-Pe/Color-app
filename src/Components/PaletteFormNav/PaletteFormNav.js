@@ -15,11 +15,17 @@ import { withStyles } from "@material-ui/core/styles";
 const drawerWidth = 400;
 /* ----------  Styles ---------- */
 const styles =  (theme) => ({
+  root:{
+    display: "flex"
+  },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: "64px"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -91,27 +97,30 @@ class PaletteFormNav extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               Create your own palette
             </Typography>
-            <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
-              <TextValidator
-                name="newPaletteName"
-                label="Palette Name"
-                value={newPaletteName}
-                onChange={this.handleChange}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={[
-                  "this field is required",
-                  "Palette name must be unique",
-                ]}
-              />
-              <Button variant="contained" color="primary" type="submit">
-                Save Palette
-              </Button>
-              <Link to="/">
-                <Button variant="contained" color="secondary">
-                  Go Back
+            <div className={classes.navBtns} >
+              <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+                <TextValidator
+                  name="newPaletteName"
+                  label="Palette Name"
+                  value={newPaletteName}
+                  onChange={this.handleChange}
+                  validators={["required", "isPaletteNameUnique"]}
+                  errorMessages={[
+                    "this field is required",
+                    "Palette name must be unique",
+                  ]}
+                />
+                <Button variant="contained" color="primary" type="submit">
+                  Save Palette
                 </Button>
+              </ValidatorForm>
+              <Link to="/">
+                  <Button variant="contained" color="secondary">
+                    Go Back
+                  </Button>
               </Link>
-            </ValidatorForm>
+            </div>
+           
           </Toolbar>
         </AppBar>
       </>
@@ -120,3 +129,5 @@ class PaletteFormNav extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(PaletteFormNav);
+
+
