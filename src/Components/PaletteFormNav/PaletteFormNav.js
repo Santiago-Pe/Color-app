@@ -26,6 +26,7 @@ const styles =  (theme) => ({
     }),
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     height: "64px"
   },
   appBarShift: {
@@ -45,7 +46,11 @@ const styles =  (theme) => ({
   },
   navBtns:{
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    marginRight: "1rem"
+  },
+  button:{
+    margin: "0 0.5rem"
   }
 })
 
@@ -97,12 +102,13 @@ class PaletteFormNav extends Component {
           <div className={classes.navBtns} >
               
               <Link to="/">
-                  <Button variant="contained" color="secondary">
+                  <Button variant="contained" color="secondary" className={classes.button}>
                     Go Back
                   </Button>
               </Link>
-        </div>
-        <PopupForm  handleSubmit={handleSubmit} palettes={palettes }/>
+              <PopupForm  handleSubmit={handleSubmit} palettes={palettes } classBtn={classes.button}/>
+          </div>
+        
         </AppBar>
       </div>
     );
