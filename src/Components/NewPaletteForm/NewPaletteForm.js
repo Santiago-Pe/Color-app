@@ -26,6 +26,8 @@ const styles = (theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: "flex",
+    alignItems: "center"
   },
   drawerHeader: {
     display: "flex",
@@ -51,6 +53,26 @@ const styles = (theme) => ({
     }),
     marginLeft: 0,
   },
+  container: {
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%"
+  },
+  buttons:{
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    margin: "1rem 0"
+    
+
+  },
+  button:{
+    width: "45%"
+
+  }
 });
 
 class NewPaletteForm extends React.Component {
@@ -171,30 +193,34 @@ class NewPaletteForm extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <Typography variant="h4">Desing your Palette</Typography>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.clrearColors}
-            >
-              Clear palette
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={this.addRandomColor}
-              disabled={isFullPalette}
-            >
-              Random color
-            </Button>
+          <div className={classes.container}>
+            <Typography variant="h4">Desing your Palette</Typography>
+            <div className={classes.buttons}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.clrearColors}
+                className={classes.button}
+              >
+                Clear palette
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.addRandomColor}
+                disabled={isFullPalette}
+                className={classes.button}
+              >
+                Random color
+              </Button>
+            </div>
             <ColorPcikerForm 
-              isFullPalette={isFullPalette}
-              colors = {this.state.colors}
-              addColor={this.addColor}  
-
-            />
+                isFullPalette={isFullPalette}
+                colors = {this.state.colors}
+                addColor={this.addColor}  
+              />
           </div>
+          
         </Drawer>
         <main
           className={classNames(classes.content, {
@@ -215,3 +241,5 @@ class NewPaletteForm extends React.Component {
 }
 
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+
+

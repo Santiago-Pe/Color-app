@@ -41,6 +41,10 @@ const styles =  (theme) => ({
   },
   hide: {
     display: "none",
+  },
+  navBtns:{
+    display: "flex",
+    flexDirection: "row"
   }
 })
 
@@ -76,7 +80,7 @@ class PaletteFormNav extends Component {
     const { newPaletteName } = this.state;
     
     return (
-      <>
+      <div className={classes.root}>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -96,8 +100,9 @@ class PaletteFormNav extends Component {
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Create your own palette
-            </Typography>
-            <div className={classes.navBtns} >
+            </Typography>           
+          </Toolbar>
+          <div className={classes.navBtns} >
               <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
                 <TextValidator
                   name="newPaletteName"
@@ -120,10 +125,8 @@ class PaletteFormNav extends Component {
                   </Button>
               </Link>
             </div>
-           
-          </Toolbar>
         </AppBar>
-      </>
+      </div>
     );
   }
 }

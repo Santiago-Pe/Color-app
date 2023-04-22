@@ -2,6 +2,31 @@ import React, { Component } from "react";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = {
+  root:{
+    width: "100%",
+  },
+  picker:{
+    width: "100% !important",
+    margintTop: "2rem"
+
+  },
+  inputColor: {
+    width: "100%",
+    marginTop: "2rem",
+    "& input": {
+      padding: "10px 10px"
+    }
+  },
+  addColor:{
+    width: "100%",
+    padding: "1rem",
+    marginTop: "1rem",
+    fontSize: "1.5rem"
+  },
+}
 
 class ColorPickerForm extends Component {
   constructor(props) {
@@ -57,19 +82,21 @@ class ColorPickerForm extends Component {
   /* ---------- Render ---------- */
   render() {
     // Destructuring props / states
-    const { isFullPalette} = this.props;
+    const { isFullPalette, classes} = this.props;
     const { currentColor, colorButton, newColorName } = this.state;
 
     return (
-      <>
+      <div className={classes.root}> 
         <ChromePicker
           color={currentColor}
           onChangeComplete={this.handleChangeComplete}
+          className={classes.picker}
         />
         <ValidatorForm onSubmit={this.handleSubmit}>
           <TextValidator
             value={newColorName}
             name="newColorName"
+            variant="filled"
             onChange={this.handleChange}
             validators={["required", "isColorNameUnique", "isColorUnique"]}
             errorMessages={[
@@ -77,6 +104,8 @@ class ColorPickerForm extends Component {
               "Color name must be unique",
               "Color already used",
             ]}
+            placeholder="Color Name"
+            className={classes.inputColor}
           />
           <Button
             variant="contained"
@@ -84,14 +113,15 @@ class ColorPickerForm extends Component {
             style={{ backgroundColor: colorButton, marginTop: "30px" }}
             type="submit"
             disabled={isFullPalette}
+            className={classes.addColor}
             
           >
             {isFullPalette ? "Full palette" : "Add new color"}
           </Button>
         </ValidatorForm>
-      </>
+      </div>
     );
   }
 }
 
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
