@@ -6,6 +6,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import "emoji-mart/css/emoji-mart.css"
+
+import { Picker } from "emoji-mart";
 
 class PopupForm extends React.Component {
 
@@ -24,6 +27,7 @@ class PopupForm extends React.Component {
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
 
   }
 
@@ -46,9 +50,7 @@ class PopupForm extends React.Component {
   handleClose ()  {
     this.setState({ open: false });
   };
-  handleSubmit ()  {
-    this.setState({ open: false });
-  };
+
   // Tracking Input
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -84,7 +86,7 @@ class PopupForm extends React.Component {
                         Please enter a name for your new beautiful palette. Make sure it's unique.
                     </DialogContentText>    
                 
-
+                    <Picker />
                     <TextValidator
                         name="newPaletteName"
                         label="Palette Name"
@@ -103,7 +105,7 @@ class PopupForm extends React.Component {
                     <Button onClick={this.handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button variant="contained" color="primary" type="submit"  onClick={this.handleClose}>
+                    <Button variant="contained" color="primary" type="submit" >
                             Save Palette
                     </Button>
                 </DialogActions>
