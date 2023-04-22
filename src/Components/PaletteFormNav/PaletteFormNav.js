@@ -60,9 +60,12 @@ class PaletteFormNav extends Component {
     /* ---------- State ---------- */
     this.state = {
       newPaletteName: "",
+      formShoing: false
     };
     /* ---------- Bidnign Functions ---------- */
     this.handleChange = this.handleChange.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.closeForm = this.closeForm.bind(this);
   }
 
   /* ----------  Functions ---------- */
@@ -70,11 +73,17 @@ class PaletteFormNav extends Component {
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+  showForm () {
+    this.setState({formShoing: true})
+  }
+  closeForm () {
+    this.setState({formShoing: false})
+  }
   /* ---------- Render ---------- */
   render() {
     // Destructuring props / states
     const { classes, open, handleDrawerOpen, handleSubmit, palettes } = this.props;
-    //const { newPaletteName } = this.state;
+    const { formShoing } = this.state;
     
     return (
       <div className={classes.root}>
@@ -100,16 +109,25 @@ class PaletteFormNav extends Component {
             </Typography>           
           </Toolbar>
           <div className={classes.navBtns} >
-              
               <Link to="/">
                   <Button variant="contained" color="secondary" className={classes.button}>
                     Go Back
                   </Button>
               </Link>
-              <PopupForm  handleSubmit={handleSubmit} palettes={palettes } classBtn={classes.button}/>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.showForm}
+                className={classes.button}
+              >
+                Save Palette
+              </Button>
+              
           </div>
         
         </AppBar>
+
+     { formShoing && <PopupForm  handleSubmit={handleSubmit} palettes={palettes } closeForm={this.closeForm}/> }
       </div>
     );
   }
