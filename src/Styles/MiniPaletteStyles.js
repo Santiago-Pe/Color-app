@@ -1,5 +1,5 @@
  /* ---------- Styles ---------- */
-export default {
+const styles = {
     root: {
        backgroundColor: "white",
        borderRadius: "5px",
@@ -8,9 +8,11 @@ export default {
        position: "relative",
        overflow: "hidden",
        boxShadow: "3px 7px 16px 3px rgba(0,0,0,0.2)",
-       "&:hover": {
-        cursor: "pointer",
-       }
+       cursor: "pointer",
+       "&:hover svg": {
+        opacity: "1"
+       },
+       
     },
     colors: {
         backgroundColor: "grey",
@@ -42,6 +44,22 @@ export default {
         margin: "0 auto",
         position: "relative",
         marginBottom: "-5px"
+    },
+    delete:{
+
+    },
+    deleteIcon: {
+        color: "white",
+        backgroundColor: "#eb3d30",
+        width: "20px",
+        height: "20px",
+        position: "absolute",
+        top: "0px",
+        right: "0px",
+        zIndex: "20",
+        padding: "5px",
+        opacity: "0"
     }
 }
 
+export default styles;

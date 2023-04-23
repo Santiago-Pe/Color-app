@@ -1,6 +1,6 @@
 import chroma from "chroma-js";
 /* ---------- Styles ---------- */
- const style = {
+ const styles = {
     colorBox: {
       width: "20%",
       height: (props) => (props.showFullPalettte ? "25%" : "50%"),
@@ -113,4 +113,4 @@ import chroma from "chroma-js";
     },
   };
   
-  export default style
+  export default styles

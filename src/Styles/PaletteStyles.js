@@ -1,5 +1,5 @@
  /* ---------- Stlyles ---------- */
-export default {
+const styles = {
     palette: {
       height: "100vh",
       display: "flex",
@@ -40,3 +40,4 @@ export default {
     },
   }
   
+  export default styles;

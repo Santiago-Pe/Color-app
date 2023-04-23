@@ -1,4 +1,4 @@
-export default {
+const styles = {
     navbar:{
         display: "flex",
         alignItems: "center",
@@ -54,3 +54,5 @@ export default {
 
 
 }
+
+export default styles;
