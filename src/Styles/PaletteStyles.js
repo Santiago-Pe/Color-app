@@ -1,3 +1,4 @@
+import media_query from './sizes'
  /* ---------- Stlyles ---------- */
 const styles = {
     palette: {
@@ -36,6 +37,21 @@ const styles = {
       cursor: "pointer",
       textDecoration: "none",
       color: "white"
+      },
+      /* ---------- large ---------- */
+      [media_query.down('lg')]:{
+        width: '25%',
+        height: '33.333%'
+      },
+      /* ---------- Tablet ---------- */
+      [media_query.down('md')]:{
+        width: '50%',
+        height: '20%'
+      },
+      /* ---------- Mobile ---------- */
+      [media_query.down('xs')]:{
+        width: '100%',
+        height: '10%'
       }
     },
   }

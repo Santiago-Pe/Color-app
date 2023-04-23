@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import sizes from './sizes'
+import media_query from './sizes'
 /* ---------- Styles ---------- */
  const styles = {
     colorBox: {
@@ -15,17 +15,18 @@ import sizes from './sizes'
         transition: "all 0.5s ease-in",
       },
       /* ---------- Large ---------- */
-      [sizes.down('lg')]:{
+      [media_query.down('lg')]:{
         width: "25%",
-        height: (props) => (props.showFullPalettte ? "20%" : "50%"),
+        height: (props) => (props.showFullPalettte ? "20%" : "33.333%"),
       },
        /* ---------- Tablet ---------- */
-       [sizes.down('md')]:{
+       [media_query.down('md')]:{
         width: "50%",
+        height: (props) => (props.showFullPalettte ? "10%" : "20%"),
        
       },
       /* ---------- Mobile ---------- */
-      [sizes.down('xs')]:{
+      [media_query.down('xs')]:{
         width: "100%",
         height: (props) => (props.showFullPalettte ? "5%" : "10%"),
       }
@@ -85,6 +86,14 @@ import sizes from './sizes'
         padding: "1rem",
         textTransform: "uppercase",
         textAlign: "center",
+        /* ---------- Tablete ---------- */
+        [media_query.down('md')]:{
+          fontSize: '5rem'
+        },
+        /* ---------- Mobile ---------- */
+        [media_query.down('xs')]:{
+          fontSize: '4rem'
+        }
       },
       "& p": {
         fontSize: "2rem",

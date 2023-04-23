@@ -12,8 +12,7 @@
 
 // XX-Large devices (larger desktops, 1400px and up)
 //@media (min-width: 1400px) { ... }
-
-export default {
+const media_query = {
     up() {
 
     },
@@ -30,5 +29,6 @@ export default {
 }
 
 
+export default  media_query
 
 
