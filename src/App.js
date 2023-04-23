@@ -10,21 +10,38 @@ import NewPaletteForm from "./Components/NewPaletteForm/NewPaletteForm";
 class App extends Component {
   constructor(props) {
     super(props);
+
+    /* ----------Local Storage ---------- */
+    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     /* ----------States ---------- */
-    this.state = { palettes: seedColors };
+    this.state = { palettes: savedPalettes || seedColors};
     /* ---------- Bidning Functions ---------- */
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
   }
 
+  /* ---------- Functions ---------- */
+
+  // go to the correct palette
   findPalette(id) {
     return this.state.palettes.find(function (palette) {
       return palette.id === id;
     });
   }
-  /* ---------- Functions ---------- */
+  //save palettes to state
   savePalette(newPalette) {
-    this.setState({ palettes: [...this.state.palettes, newPalette] });
+    this.setState(
+      { palettes: [...this.state.palettes, newPalette] }, 
+      this.syncLocalStorage
+    );
+  }
+  // save pallet to local storage
+  syncLocalStorage () {
+    
+    window.localStorage.setItem(
+      "palettes",
+      JSON.stringify(this.state.palettes)
+    )
   }
   /* ---------- Render ---------- */
   render() {
