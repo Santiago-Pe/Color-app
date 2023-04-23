@@ -1,23 +1,27 @@
  /* ---------- Styles ---------- */
 const styles = {
     root: {
+        height: 'auto',
        backgroundColor: "white",
        borderRadius: "5px",
        padding: "0.5rem",
        border: "none",
        position: "relative",
-       overflow: "hidden",
+
        boxShadow: "3px 7px 16px 3px rgba(0,0,0,0.2)",
        cursor: "pointer",
        "&:hover svg": {
         opacity: "1"
        },
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
        
     },
     colors: {
         backgroundColor: "grey",
-        height: "100px",
-        width: "100%",
+        height: "120px",
+        width: "auto",
         overflow: "hidden",
         borderRadius: "5px",
     },
@@ -58,7 +62,8 @@ const styles = {
         right: "0px",
         zIndex: "20",
         padding: "5px",
-        opacity: "0"
+        opacity: "0",
+        borderRadius: '0px 5px 0px 0px'
     }
 }
 

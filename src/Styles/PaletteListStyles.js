@@ -1,22 +1,26 @@
+import media_query from './sizes'
 const styles =  {
     root: {
        backgroundColor: "blue",
        height: "100vh",
        display: "flex",
-       alignItems: "center",
+       alignItems: "flex-start",
        justifyContent: "center",
        padding: "2rem",
        //width: "100%"
 
     },
     container: {
-        maxWidth: "1080px",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        height: "100%",
-        margin: "0 auto"
+        width: '52%',
+        display: 'flex',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        /* ---------- Extra Large ---------- */
+       [media_query.down('xl')]:{
+        width: "80%",
+       
+      },
     },
     nav: {
         display: "flex",
@@ -36,9 +40,18 @@ const styles =  {
         boxSizing: "border-box",
         width: "100%",
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "10px",
-        row: "10px"
+        gridTemplateColumns: "repeat(3, 30%)",
+        gridGap: '5%',
+        /* ----------Large Mobile ---------- */
+       [media_query.down('sm')]:{
+        gridTemplateColumns: "repeat(2, 50%)",
+       
+      },
+        /* ----------Mobile ---------- */
+       [media_query.down('xs')]:{
+        gridTemplateColumns: "repeat(1, 100%)",
+       
+      },
     },
     link:{
         textDecoration: "none"
