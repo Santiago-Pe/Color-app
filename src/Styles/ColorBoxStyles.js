@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import sizes from './sizes'
 /* ---------- Styles ---------- */
  const styles = {
     colorBox: {
@@ -13,6 +14,21 @@ import chroma from "chroma-js";
         opacity: "1",
         transition: "all 0.5s ease-in",
       },
+      /* ---------- Large ---------- */
+      [sizes.down('lg')]:{
+        width: "25%",
+        height: (props) => (props.showFullPalettte ? "20%" : "50%"),
+      },
+       /* ---------- Tablet ---------- */
+       [sizes.down('md')]:{
+        width: "50%",
+       
+      },
+      /* ---------- Mobile ---------- */
+      [sizes.down('xs')]:{
+        width: "100%",
+        height: (props) => (props.showFullPalettte ? "5%" : "10%"),
+      }
     },
     text: {
       color: (props) =>
