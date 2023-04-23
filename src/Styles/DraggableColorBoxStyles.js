@@ -1,3 +1,4 @@
+import media_query from './sizes'
 /* ----------  Styles ---------- */
 const styles = {
     root: {
@@ -12,6 +13,22 @@ const styles = {
         color: "white",
         transform: "scale(1.5)"
 
+      },
+       /* ---------- Large ---------- */
+       [media_query.down('lg')]:{
+        width: "25%",
+        height: '20%',
+      },
+       /* ---------- Tablet ---------- */
+       [media_query.down('md')]:{
+        width: "50%",
+        height:'10%'
+       
+      },
+      /* ---------- Mobile ---------- */
+      [media_query.down('sm')]:{
+        width: "100%",
+        height: '5%',
       }
     },
     boxContent: {

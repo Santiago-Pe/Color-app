@@ -1,3 +1,5 @@
+
+import media_query from './sizes'
 const styles = {
     navbar:{
         display: "flex",
@@ -21,6 +23,10 @@ const styles = {
         },
         "& .material-icons":{
             marginLeft: "5px"
+        },
+        /* ---------- Mobile ---------- */
+        [media_query.down('xs')]:{
+            display: 'none'
         }
     },
     slider:{
@@ -42,6 +48,10 @@ const styles = {
             height: "13px",
             marginLeft: "-7px",
             marginTop: "-3px"
+        },
+        /* ---------- Mobile ---------- */
+        [media_query.down('md')]:{
+            width: '150px',
         }
     },
     selectContainer:{

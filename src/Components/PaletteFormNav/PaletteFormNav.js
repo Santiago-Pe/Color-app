@@ -11,7 +11,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import PopupForm from "../PopupForm/PopupForm";
-import styles from "../../Styles/PaletteFormNav";
+import styles from "../../Styles/PaletteFormNavStyles";
 
 
 
@@ -65,7 +65,7 @@ class PaletteFormNav extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap  className={classes.title}>
               Create your own palette
             </Typography>           
           </Toolbar>
@@ -81,7 +81,7 @@ class PaletteFormNav extends Component {
                 onClick={this.showForm}
                 className={classes.button}
               >
-                Save Palette
+                Save
               </Button>
               
           </div>

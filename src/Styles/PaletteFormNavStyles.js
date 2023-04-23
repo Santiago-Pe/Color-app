@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from "../Helpers/constants";
+import media_query from './sizes'
 /* ----------  Width of SideNav ---------- */
 const drawerWidth = DRAWER_WIDTH;
 /* ----------  Styles ---------- */
@@ -24,9 +25,21 @@ const styles =  (theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+  title :{
+    fontSize: '1.5rem',
+    /* ---------- Mobile ---------- */
+    [media_query.down('sm')]:{
+      fontSize: '1rem'
+    }
+  },
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
+    /* ---------- Mobile ---------- */
+    [media_query.down('sm')]:{
+      margin: '0',
+      padding: '0.5rem'
+    }
   },
   hide: {
     display: "none",
@@ -34,10 +47,21 @@ const styles =  (theme) => ({
   navBtns:{
     display: "flex",
     flexDirection: "row",
-    marginRight: "1rem"
+    marginRight: "1rem",
+     /* ---------- Mobile ---------- */
+     [media_query.down('sm')]:{
+      margin: "0.5rem"
+    }
+    
   },
   button:{
-    margin: "0 0.5rem"
+    margin: "0 0.5rem",
+    /* ---------- Mobile ---------- */
+    [media_query.down('sm')]:{
+      fontSize: '0.8rem',
+      margin: "0 0.2rem",
+      padding: '0.3rem'
+    }
   }
 })
 
