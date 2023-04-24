@@ -7,6 +7,7 @@ import PaletteList from "./Components/PaletteList/PaletteList";
 import SinglePalette from "./Components/SinglePalette/SinglePalette";
 import NewPaletteForm from "./Components/NewPaletteForm/NewPaletteForm";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Page from "./Components/Page/Page";
 import './App.css'
 
 class App extends Component {
@@ -81,40 +82,40 @@ class App extends Component {
                   exact
                   path={"/"}
                   render={(routesProps) => (
-                    <div className="page">
+                    <Page className="page">
                       <PaletteList
                         palette={this.state.palettes}
                         {...routesProps}
                         deletePalette={this.deletePalette}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path={"/palette/:id"}
                   render={(routesProps) => (
-                    <div className="page">
+                    <Page className="page">
                       <Palette
                         palette={generatePalette(
                           this.findPalette(routesProps.match.params.id)
                         )}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path={"/palette/:paletteId/:colorId"}
                   render={(routesProps) => (
-                      <div className="page">
+                      <Page className="page">
                       <SinglePalette
                         palette={generatePalette(
                           this.findPalette(routesProps.match.params.paletteId)
                         )}
                         colorId={routesProps.match.params.colorId}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
               </Switch>

@@ -63,6 +63,7 @@ class PopupForm extends React.Component {
     console.log(emoji.native)
     const newPalette = {paletteName: this.state.newPaletteName, emoji: emoji.native }
     this.props.handleSubmit(newPalette)
+    this.setState({stage: ""})
   }
   /* ---------- Render ---------- */
   render() {
