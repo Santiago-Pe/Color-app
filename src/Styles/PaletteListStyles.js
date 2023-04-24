@@ -1,6 +1,15 @@
 import media_query from './sizes';
 import bg from './sun-tornado.svg'
 const styles =  {
+  '@global': {
+    'fade-exit':{
+      opacity: '1'
+    },
+    'fade-exit-active':{
+      opacity: '0',
+      transition: 'opacity 300ms ease-out'
+    }
+  },
     root: {
        height: "100vh",
        display: "flex",
