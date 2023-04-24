@@ -7,9 +7,15 @@ const styles =  {
        alignItems: "flex-start",
        justifyContent: "center",
        padding: "2rem",
-       //width: "100%"
+       //width: "100%",
+       /* ---------- Extra Small ---------- */
+      [media_query.down('sm')]:{
+        height: "100%",
+      
+      },
 
     },
+    
     container: {
         width: '52%',
         display: 'flex',
@@ -18,6 +24,11 @@ const styles =  {
         flexDirection: 'column',
         /* ---------- Extra Large ---------- */
        [media_query.down('xl')]:{
+        width: "80%",
+       
+      },
+      /* ---------- Extra Small ---------- */
+      [media_query.down('xs')]:{
         width: "80%",
        
       },
@@ -41,7 +52,7 @@ const styles =  {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: '5%',
+        gridGap: '1.5rem',
         /* ----------Large Mobile ---------- */
        [media_query.down('sm')]:{
         gridTemplateColumns: "repeat(2, 50%)",
@@ -50,6 +61,7 @@ const styles =  {
         /* ----------Mobile ---------- */
        [media_query.down('xs')]:{
         gridTemplateColumns: "repeat(1, 100%)",
+        gridGap: '1rem',
        
       },
     },
