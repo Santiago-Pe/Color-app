@@ -25,7 +25,10 @@ const styles = {
             marginLeft: "5px"
         },
         /* ---------- Mobile ---------- */
-        [media_query.down('xs')]:{
+       
+    },
+    logoTitle:{
+         [media_query.down('md')]:{
             display: 'none'
         }
     },
@@ -50,7 +53,7 @@ const styles = {
             marginTop: "-3px"
         },
         /* ---------- Mobile ---------- */
-        [media_query.down('md')]:{
+        [media_query.down('sm')]:{
             width: '150px',
         }
     },

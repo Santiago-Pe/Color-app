@@ -40,7 +40,7 @@ class Navbar extends Component {
     return (
       <header className={classes.navbar}>
         <Link className={classes.logo} to={"/"}>
-          <span>ColorLab</span>
+          <span className={classes.logoTitle}>ColorLab</span>
           <span className="material-icons">palette</span>
         </Link>
         {showingAllColors && (
