@@ -9,6 +9,7 @@ class MiniPalette extends PureComponent {
     constructor(props) {
       super(props);
       this.deletePalette = this.deletePalette.bind(this);
+      this.handleClick = this.handleClick.bind(this);
     }
   
     deletePalette(e, id) {
@@ -16,10 +17,12 @@ class MiniPalette extends PureComponent {
       //this.props.handleDelete(id);
       this.props.openDialog(id)
     }
-    
+    handleClick () {
+      this.props.goToPalete(this.props.id)
+    }
   
     render() {
-      const { classes, paletteName, emoji, colors, handleClick, id} = this.props;
+      const { classes, paletteName, emoji, colors, id} = this.props;
       const miniColorBoxes = colors.map((color) => (
         <div
           className={classes.miniColor}
@@ -29,7 +32,7 @@ class MiniPalette extends PureComponent {
       ));
   
       return (
-        <div className={classes.root} onClick={() => handleClick(id)}>
+        <div className={classes.root} onClick={this.handleClick}>
           <div className={classes.delete}>
             {/* <Delete
                 className={classes.deleteIcon}
