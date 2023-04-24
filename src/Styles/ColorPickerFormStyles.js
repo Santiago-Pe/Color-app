@@ -1,3 +1,4 @@
+import media_query from './sizes'
 const styles = {
     root:{
       width: "100%",
@@ -17,8 +18,13 @@ const styles = {
     addColor:{
       width: "100%",
       padding: "1rem",
-      marginTop: "1rem",
-      fontSize: "1.5rem"
+      marginTop: "0.5rem",
+      fontSize: "1.2rem",
+       /* ---------- Mobile ---------- */
+       [media_query.down('sm')]:{
+        fontSize: "1rem",
+        padding: "0.5rem",
+      }
     },
   }
 

@@ -84,9 +84,18 @@ class NewPaletteForm extends React.Component {
   }
   // Add random color to palette
   addRandomColor() {
+
     const allColors = this.props.palettes.map((p) => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    let newRandomColor = allColors[rand];
+    let rand;
+    let newRandomColor;
+    let isDuplicatorColor = true;
+    while (isDuplicatorColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      newRandomColor = allColors[rand];
+      isDuplicatorColor = this.state.colors.some(
+        color => color.name === newRandomColor.name
+      );
+    }
     this.setState({ colors: [...this.state.colors, newRandomColor] });
   }
 
@@ -134,7 +143,7 @@ class NewPaletteForm extends React.Component {
           </div>
           <Divider />
           <div className={classes.container}>
-            <Typography variant="h4">Desing your Palette</Typography>
+            <Typography className={classes.title}>Desing your Palette</Typography>
             <div className={classes.buttons}>
               <Button
                 variant="contained"

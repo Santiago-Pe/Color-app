@@ -1,4 +1,5 @@
-import { DRAWER_WIDTH } from "../Helpers/constants";
+import { DRAWER_WIDTH} from "../Helpers/constants";
+import media_query from './sizes'
 /* ----------  Width of SideNav ---------- */
 const drawerWidth = DRAWER_WIDTH;
 /* ----------  Styles ---------- */
@@ -9,11 +10,12 @@ const styles = (theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+   
   },
   drawerPaper: {
     width: drawerWidth,
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   drawerHeader: {
     display: "flex",
@@ -46,7 +48,15 @@ const styles = (theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%"
+    height: "100%",
+  },
+  title:{
+    fontSize: '2rem',
+    /* ---------- Mobile ---------- */
+    [media_query.down('xs')]:{
+      fontSize: '1.5rem'
+    }
+
   },
   buttons:{
     width: "100%",
@@ -57,8 +67,8 @@ const styles = (theme) => ({
 
   },
   button:{
-    width: "45%"
-
+    width: "48%",
+    fontSize: '13px'
   }
 });
 

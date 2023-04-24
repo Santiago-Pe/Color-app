@@ -29,7 +29,7 @@ const styles =  (theme) => ({
     fontSize: '1.5rem',
     /* ---------- Mobile ---------- */
     [media_query.down('sm')]:{
-      fontSize: '1rem'
+      display:  'none'
     }
   },
   menuButton: {
@@ -39,6 +39,8 @@ const styles =  (theme) => ({
     [media_query.down('sm')]:{
       margin: '0',
       padding: '0.5rem'
+
+
     }
   },
   hide: {
@@ -48,9 +50,12 @@ const styles =  (theme) => ({
     display: "flex",
     flexDirection: "row",
     marginRight: "1rem",
+    width: '100%',
+    justifyContent: 'end',
      /* ---------- Mobile ---------- */
      [media_query.down('sm')]:{
-      margin: "0.5rem"
+      margin: "0.5rem",
+      
     }
     
   },
