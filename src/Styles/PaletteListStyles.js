@@ -1,13 +1,18 @@
-import media_query from './sizes'
+import media_query from './sizes';
+import bg from './sun-tornado.svg'
 const styles =  {
     root: {
-       backgroundColor: "blue",
        height: "100vh",
        display: "flex",
        alignItems: "flex-start",
        justifyContent: "center",
        padding: "2rem",
        //width: "100%",
+       backgroundColor: '#0000FF',
+        backgroundImage: `url(${bg})`,
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
        /* ---------- Extra Small ---------- */
       [media_query.down('sm')]:{
         height: "100%",
@@ -45,13 +50,18 @@ const styles =  {
 
     },
     title:{
-        color: "white"
+        color: "white",
+        fontSize: '2rem',
+          /* ----------Mobile ---------- */
+       [media_query.down('xs')]:{
+        fontSize: '1.5rem'
+      },
     },
     palette:{
         boxSizing: "border-box",
         width: "100%",
         display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
+        gridTemplateColumns: "repeat(3, 2fr)",
         gridGap: '1.5rem',
         /* ----------Large Mobile ---------- */
        [media_query.down('sm')]:{
