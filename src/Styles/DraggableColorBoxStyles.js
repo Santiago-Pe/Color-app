@@ -43,10 +43,18 @@ const styles = {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        color: "rgba(0, 0, 0, 0.5)"
+      },
+      textLight: {
+        color: 'white'
+
+      },
+      textDark: {
+        color: 'black'
+
       },
       deleteIcon: {
-        transition: "all 0.3s ease-in-out"
+        transition: "all 0.3s ease-in-out",
+
       }
 }
 
