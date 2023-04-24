@@ -1,5 +1,5 @@
+/* ---------- Dependeces ---------- */
 import React from "react";
-import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
@@ -11,7 +11,12 @@ import DraggableColorList from "../DraggableColorList/DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "../PaletteFormNav/PaletteFormNav";
 import ColorPcikerForm from "../ColorPickerForm/ColorPickerForm";
-import styles  from "../../Styles/NewPaletteFormStyles";
+
+/* ---------- Styles ---------- */
+import styles from "../../Styles/NewPaletteFormStyles";
+import classNames from "classnames";
+
+/* ---------- Componente ---------- */
 
 class NewPaletteForm extends React.Component {
   /* ----------  Statics Props ---------- */
@@ -40,8 +45,6 @@ class NewPaletteForm extends React.Component {
     this.addRandomColor = this.addRandomColor.bind(this);
   }
 
- 
-
   /* ----------  Functions ---------- */
   // Open nav
   handleDrawerOpen() {
@@ -61,14 +64,6 @@ class NewPaletteForm extends React.Component {
   // Tracking Input
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  }
-  // Save Palette
-  handleSubmit(newPalette) {
-    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
-    newPalette.colors = this.state.colors;
-    
-    this.props.saveNewPalette(newPalette);
-    this.props.history.push("/");
   }
   // To drag and drop elements
   onSortEnd = ({ oldIndex, newIndex }) => {
@@ -94,12 +89,22 @@ class NewPaletteForm extends React.Component {
     this.setState({ colors: [...this.state.colors, newRandomColor] });
   }
 
+  /* ---------- Fucntions as props ---------- */
+
+  // Save Palette
+  handleSubmit(newPalette) {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
+    newPalette.colors = this.state.colors;
+
+    this.props.saveNewPalette(newPalette);
+    this.props.history.push("/");
+  }
+
   /* ---------- Render ---------- */
   render() {
     // Destructuring props and states
     const { classes, maxColorBox, palettes } = this.props;
-    const { open, colors} =
-      this.state;
+    const { open, colors } = this.state;
 
     // Bolean to give color box limit
     let isFullPalette = colors.length >= maxColorBox;
@@ -148,13 +153,12 @@ class NewPaletteForm extends React.Component {
                 Random color
               </Button>
             </div>
-            <ColorPcikerForm 
-                isFullPalette={isFullPalette}
-                colors = {this.state.colors}
-                addColor={this.addColor}  
-              />
+            <ColorPcikerForm
+              isFullPalette={isFullPalette}
+              colors={this.state.colors}
+              addColor={this.addColor}
+            />
           </div>
-          
         </Drawer>
         <main
           className={classNames(classes.content, {
@@ -175,5 +179,3 @@ class NewPaletteForm extends React.Component {
 }
 
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
-
-

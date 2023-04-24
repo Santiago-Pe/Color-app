@@ -1,9 +1,17 @@
+/* ---------- Dependeces ---------- */
 import React from "react";
-import styles from "../../Styles/PaletteFooterStyles";
 import { withStyles } from "@material-ui/core";
 
+/* ---------- Styles ---------- */
+import styles from "../../Styles/PaletteFooterStyles";
+
+/* ---------- Component ---------- */
+
 function PaletteFooter (props){
+
+    // Destructuring props
     const {paletteName, emoji, classes} = props;
+    
     return(
         <footer className={classes.paletteFooter}>
           {paletteName}

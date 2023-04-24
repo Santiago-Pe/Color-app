@@ -1,11 +1,17 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+
+/* ---------- Child COmponent ---------- */
 import ColorBox from "../ColorBox/ColorBox";
 import Navbar from "../Navbar/Navbar";
 import PaletteFooter from "../PaletteFooter/PaletteFooter";
-import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
+
+/* ---------- Styles ---------- */
 import styles from "../../Styles/PaletteStyles";
 
+/* ---------- Component ---------- */
 
 class SinglePalette extends Component {
   constructor(props) {
@@ -14,15 +20,16 @@ class SinglePalette extends Component {
     console.log(this._shades);
     /* ---------- State ---------- */
     this.state = {
-        format: "hex"
-    }
+      format: "hex",
+    };
     /* ---------- Binding Functions ---------- */
     this.changeFormat = this.changeFormat.bind(this);
   }
 
   /* ---------- Functions ---------- */
+
+  // Give many values of opacity
   gatherShades(palette, colorToFilterBy) {
-    // TODO
     let shades = [];
     let allColors = palette.colors;
 
@@ -33,6 +40,7 @@ class SinglePalette extends Component {
     }
     return shades.slice(1);
   }
+
   // Change color format
   changeFormat(val) {
     this.setState({ format: val });
@@ -40,9 +48,12 @@ class SinglePalette extends Component {
 
   /* ---------- Render ---------- */
   render() {
-    const {format} = this.state
-    const {paletteName, emoji, id} = this.props.palette
-    const {classes} = this.props;
+    // Destructuring props and states
+    const { format } = this.state;
+    const { paletteName, emoji, id } = this.props.palette;
+    const { classes } = this.props;
+
+    // Creat color boxes
     const colorBoxes = this._shades.map((color) => (
       <ColorBox
         key={color.name}
@@ -51,19 +62,20 @@ class SinglePalette extends Component {
         showFullPalettte={false}
       />
     ));
+
     return (
       <div className={classes.palette}>
-        <Navbar
-          handleChange={this.changeFormat}
-          showingAllColors={false}
-        />
+        <Navbar handleChange={this.changeFormat} showingAllColors={false} />
         <div className={classes.paletteColor}>
           {colorBoxes}
           <div className={classes.goBack}>
-            <Link className="back-button" to={`/palette/${id}`}> GO BACK</Link>
+            <Link className="back-button" to={`/palette/${id}`}>
+              {" "}
+              GO BACK
+            </Link>
           </div>
         </div>
-        <PaletteFooter paletteName={paletteName} emoji={emoji}/>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );
   }

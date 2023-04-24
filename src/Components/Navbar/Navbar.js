@@ -1,36 +1,46 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
 import Slider from "rc-slider";
 import { Link } from "react-router-dom";
-/* ---------- Material UI ---------- */
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withStyles } from "@material-ui/styles";
+
 /* ---------- Styels ---------- */
 import "rc-slider/assets/index.css";
 import styles from "../../Styles/NavbarStyles"
 
+/* ---------- Componente ---------- */
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
+
     /* ---------- States ---------- */
+    
     // State for saving color formats and managing notifications.
     this.state = { format: "hex", open: false };
+
     /* ---------- Binding Functions ---------- */
     this.handleFormatChange = this.handleFormatChange.bind(this);
     this.closeSnackbar = this.closeSnackbar.bind(this);
   }
+
   /* ---------- Fucntions ---------- */
-  //Explciar
+  // Close alert
   closeSnackbar() {
     this.setState({ open: false });
   }
+
   /* ---------- Fucntions as props ---------- */
-  //Explciar
+  
+  // Handle inputs value
   handleFormatChange(evt) {
     this.setState({ format: evt.target.value, open: true });
     this.props.handleChange(evt.target.value);
   }
+
   /* ---------- render ---------- */
   render() {
     // Destructuring props and states

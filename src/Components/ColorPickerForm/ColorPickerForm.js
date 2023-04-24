@@ -1,9 +1,14 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { withStyles } from "@material-ui/core/styles";
+
+/* ---------- Styles ---------- */
 import styles from "../../Styles/ColorPickerFormStyles";
+
+/* ---------- Component ---------- */
 
 class ColorPickerForm extends Component {
   constructor(props) {
@@ -22,8 +27,8 @@ class ColorPickerForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-   /* ----------  LyfeCycles ---------- */
-   componentDidMount() {
+  /* ----------  LyfeCycles ---------- */
+  componentDidMount() {
     // custom rule will have name 'isColorNameUnique'
     ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
       this.props.colors.every(
@@ -37,6 +42,7 @@ class ColorPickerForm extends Component {
   }
 
   /* ---------- Functions ---------- */
+
   // Save colors on state to manage ChromePicker component
   handleChangeComplete(colors) {
     // ChromePciker
@@ -48,22 +54,23 @@ class ColorPickerForm extends Component {
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  handleSubmit (){
+  // Add color and clean input
+  handleSubmit() {
     const newColor = {
-        color: this.state.colorButton,
-        name: this.state.newColorName,
+      color: this.state.colorButton,
+      name: this.state.newColorName,
     };
-    this.setState({newColorName: "" })
-    this.props.addColor(newColor)
+    this.setState({ newColorName: "" });
+    this.props.addColor(newColor);
   }
   /* ---------- Render ---------- */
   render() {
     // Destructuring props / states
-    const { isFullPalette, classes} = this.props;
+    const { isFullPalette, classes } = this.props;
     const { currentColor, colorButton, newColorName } = this.state;
 
     return (
-      <div className={classes.root}> 
+      <div className={classes.root}>
         <ChromePicker
           color={currentColor}
           onChangeComplete={this.handleChangeComplete}
@@ -91,7 +98,6 @@ class ColorPickerForm extends Component {
             type="submit"
             disabled={isFullPalette}
             className={classes.addColor}
-            
           >
             {isFullPalette ? "Full palette" : "Add new color"}
           </Button>

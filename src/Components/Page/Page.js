@@ -1,5 +1,10 @@
+/* ---------- Dependeces ---------- */
 import React from "react";
-import '../../App.css'
+
+/* ---------- Styles ---------- */
+import '../../App.css';
+
+/* ---------- Component ---------- */
 
 function Page ({children}) {
 

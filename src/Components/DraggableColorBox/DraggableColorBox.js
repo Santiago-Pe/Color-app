@@ -1,13 +1,19 @@
+/* ---------- Dependeces ---------- */
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-//import chroma from "chroma-js";
 import { Delete } from "@material-ui/icons";
 import { SortableElement } from "react-sortable-hoc";
+
+/* ---------- Styles ---------- */
 import styles from "../../Styles/DraggableColorBoxStyles";
 
+/* ---------- Component ---------- */
 
 const DraggableColorBox  = SortableElement( (props) => {
-    const {classes, color, name, deleteColor} = props
+
+    // Destructuring props
+    const {classes, color, name, deleteColor} = props;
+    
     return(
         <div style={{backgroundColor: color}} className={classes.root}>
             <div className={classes.boxContent}>

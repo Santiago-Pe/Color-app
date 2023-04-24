@@ -1,15 +1,21 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
 import ColorBox from "../ColorBox/ColorBox";
 import Navbar from "../Navbar/Navbar";
 import PaletteFooter from "../PaletteFooter/PaletteFooter";
 import { withStyles } from "@material-ui/styles";
+
+/* ---------- Styles ---------- */
 import styles from "../../Styles/PaletteStyles";
 
+/* ---------- Component ---------- */
 
 class Palette extends Component {
   constructor(props) {
     super(props);
+
     /* ---------- States ---------- */
+
     // State to tracking de scale of my color
     this.state = {
       level: 500,
@@ -22,6 +28,7 @@ class Palette extends Component {
   }
 
   /* ---------- Functions ---------- */
+
   // Changes levels of color scale
   changeLevel(level) {
     this.setState({ level });

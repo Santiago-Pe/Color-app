@@ -1,14 +1,26 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+/* ---------- Helpers ---------- */
+import generatePalette from "./Helpers/colorHelpers";
+
+/* ---------- Child Component ---------- */
 import Palette from "./Components/Palette/Palette";
 import seedColors from "./Services/seedColors";
-import generatePalette from "./Helpers/colorHelpers";
 import PaletteList from "./Components/PaletteList/PaletteList";
 import SinglePalette from "./Components/SinglePalette/SinglePalette";
 import NewPaletteForm from "./Components/NewPaletteForm/NewPaletteForm";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Page from "./Components/Page/Page";
-import './App.css'
+
+/* ---------- CSS ---------- */
+import "./App.css";
+
+
+
+
+/* ---------- Componente ---------- */
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +29,7 @@ class App extends Component {
     /* ----------Local Storage ---------- */
     const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
     /* ----------States ---------- */
-    this.state = { palettes: savedPalettes || seedColors};
+    this.state = { palettes: savedPalettes || seedColors };
     /* ---------- Bidning Functions ---------- */
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
@@ -35,27 +47,25 @@ class App extends Component {
   //save palettes to state
   savePalette(newPalette) {
     this.setState(
-      { palettes: [...this.state.palettes, newPalette] }, 
+      { palettes: [...this.state.palettes, newPalette] },
       this.syncLocalStorage
     );
   }
   // save pallet to local storage
-  syncLocalStorage () {
-    
+  syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
       JSON.stringify(this.state.palettes)
-    )
+    );
   }
   // delete palette
-  deletePalette (id)  {
+  deletePalette(id) {
     this.setState(
-      st => ({palettes: st.palettes.filter(palette => palette.id !== id)}),
+      (st) => ({
+        palettes: st.palettes.filter((palette) => palette.id !== id),
+      }),
       this.syncLocalStorage
     );
-   
-    
-
   }
   /* ---------- Render ---------- */
   render() {
@@ -108,7 +118,7 @@ class App extends Component {
                   exact
                   path={"/palette/:paletteId/:colorId"}
                   render={(routesProps) => (
-                      <Page className="page">
+                    <Page className="page">
                       <SinglePalette
                         palette={generatePalette(
                           this.findPalette(routesProps.match.params.paletteId)

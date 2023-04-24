@@ -1,3 +1,4 @@
+/* ---------- Dependeces ---------- */
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -6,9 +7,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { Picker } from "emoji-mart";
+
+/* ---------- Styles ---------- */
 import "emoji-mart/css/emoji-mart.css";
 
-import { Picker } from "emoji-mart";
+/* ---------- Component ---------- */
 
 class PopupForm extends React.Component {
   /* ---------- Constructor ---------- */
@@ -55,16 +59,22 @@ class PopupForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  showEmojiPicker () {
-    this.setState({stage: "emoji"})
+  showEmojiPicker() {
+    this.setState({ stage: "emoji" });
   }
 
-  savePalette (emoji){
-    console.log(emoji.native)
-    const newPalette = {paletteName: this.state.newPaletteName, emoji: emoji.native }
-    this.props.handleSubmit(newPalette)
-    this.setState({stage: ""})
+  /* ---------- Fucntions as props ---------- */
+
+  savePalette(emoji) {
+    console.log(emoji.native);
+    const newPalette = {
+      paletteName: this.state.newPaletteName,
+      emoji: emoji.native,
+    };
+    this.props.handleSubmit(newPalette);
+    this.setState({ stage: "" });
   }
+
   /* ---------- Render ---------- */
   render() {
     // Destructuring props / states
@@ -73,14 +83,8 @@ class PopupForm extends React.Component {
 
     return (
       <div>
-        <Dialog 
-            open={stage === "emoji"} 
-            onClose={closeForm}
-        >
-            <Picker  
-                onSelect={this.savePalette}
-                title="Pick a Palette Emoji"    
-                />
+        <Dialog open={stage === "emoji"} onClose={closeForm}>
+          <Picker onSelect={this.savePalette} title="Pick a Palette Emoji" />
         </Dialog>
         <Dialog
           open={stage === "form"}
@@ -89,7 +93,7 @@ class PopupForm extends React.Component {
         >
           <DialogTitle id="form-dialog-title">Choose a Platte Name</DialogTitle>
 
-          <ValidatorForm onSubmit={this.showEmojiPicker }>
+          <ValidatorForm onSubmit={this.showEmojiPicker}>
             <DialogContent>
               <DialogContentText>
                 Please enter a name for your new beautiful palette. Make sure

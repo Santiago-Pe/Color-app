@@ -1,14 +1,21 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
-import styles from "../../Styles/ColorBoxStyles";
 import { withStyles } from "@material-ui/styles";
+
+/* ---------- Styles ---------- */
+import styles from "../../Styles/ColorBoxStyles";
 import classesNames from "classnames";
+
+/* ---------- Component ---------- */
 
 class ColorBox extends Component {
   constructor(props) {
     super(props);
+
     /* ---------- States ---------- */
+    
     // State to show a message when the user wants get color
     this.state = { copied: false };
 

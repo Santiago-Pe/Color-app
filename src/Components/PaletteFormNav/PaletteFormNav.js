@@ -1,4 +1,8 @@
+/* ---------- Dependeces ---------- */
 import React, { Component } from "react";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -6,23 +10,29 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Button } from "@material-ui/core";
-//import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
-import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
+
+
+
+/* ---------- Child Component ---------- */
 import PopupForm from "../PopupForm/PopupForm";
+
+/* ---------- Styles ---------- */
 import styles from "../../Styles/PaletteFormNavStyles";
 
 
 
+/* ---------- Dependeces ---------- */
+
 class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
+
     /* ---------- State ---------- */
     this.state = {
       newPaletteName: "",
       formShoing: false
     };
+
     /* ---------- Bidnign Functions ---------- */
     this.handleChange = this.handleChange.bind(this);
     this.showForm = this.showForm.bind(this);
@@ -40,8 +50,10 @@ class PaletteFormNav extends Component {
   closeForm () {
     this.setState({formShoing: false})
   }
+
   /* ---------- Render ---------- */
   render() {
+
     // Destructuring props / states
     const { classes, open, handleDrawerOpen, handleSubmit, palettes } = this.props;
     const { formShoing } = this.state;
