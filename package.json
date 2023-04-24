@@ -1,6 +1,7 @@
 {
+  "homepage": "https://santiago-pe.github.io/Color-app/",
   "name": "app-color",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.4",
@@ -23,7 +24,6 @@
     "react-transition-group": "^4.4.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://santiago-pe.github.io/Color-app/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
