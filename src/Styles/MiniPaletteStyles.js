@@ -10,7 +10,7 @@ const styles = {
 
        boxShadow: "3px 7px 16px 3px rgba(0,0,0,0.2)",
        cursor: "pointer",
-       "&:hover svg": {
+       "&:hover button": {
         opacity: "1"
        },
         display: 'flex',
@@ -49,21 +49,28 @@ const styles = {
         position: "relative",
         marginBottom: "-5px"
     },
-    delete:{
-
-    },
-    deleteIcon: {
+    btnDelete: {
         color: "white",
         backgroundColor: "#eb3d30",
-        width: "20px",
-        height: "20px",
+        width: "2rem !important",
+        height: "2rem !important",
         position: "absolute",
         top: "0px",
         right: "0px",
         zIndex: "20",
         padding: "5px",
+        cursor: 'pointer',
         opacity: "0",
-        borderRadius: '0px 5px 0px 0px'
+        border: 'none',
+        borderRadius: '0px 5px 0px 0px',
+        outline: 'none',
+        '& svg':{
+            width: "1.2rem !important",
+            height: "1.2rem !important",
+        }
+    },
+    icon:{
+
     }
 }
 

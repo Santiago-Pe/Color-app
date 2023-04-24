@@ -30,15 +30,29 @@ class MiniPalette extends Component {
   
       return (
         <div className={classes.root} onClick={goToPalete}>
-            <Delete
-            className={classes.deleteIcon}
-            style={{ transition: "all 0.3s ease-in-out" }}
-            onClick={(e) => this.deletePalette(e, id)}
-            />
-            <div className={classes.colors}>{miniColorBoxes}</div>
-            <h5 className={classes.title}>
+          <div className={classes.delete}>
+            {/* <Delete
+                className={classes.deleteIcon}
+                style={{ transition: "all 0.3s ease-in-out" , height: '1.2rem', width: '1.2rem'}}
+                onClick={(e) => this.deletePalette(e, id)}
+              /> */}
+            <button
+              className={classes.btnDelete}
+              style={{
+                transition: "all 0.3s ease-in-out",
+                height: "1.2rem",
+                width: "1.2rem",
+              }}
+              onClick={(e) => this.deletePalette(e, id)}
+            >
+              <Delete  className={classes.icon}/>
+            </button>
+          </div>
+
+          <div className={classes.colors}>{miniColorBoxes}</div>
+          <h5 className={classes.title}>
             {paletteName} <span className={classes.emoji}>{emoji}</span>
-            </h5>
+          </h5>
         </div>
       );
     }
