@@ -12,7 +12,7 @@ import seedColors from "./Services/seedColors";
 import PaletteList from "./Components/PaletteList/PaletteList";
 import SinglePalette from "./Components/SinglePalette/SinglePalette";
 import NewPaletteForm from "./Components/NewPaletteForm/NewPaletteForm";
-import Page from "./Components/Page/Page";
+
 
 /* ---------- CSS ---------- */
 import "./App.css";
@@ -79,64 +79,55 @@ class App extends Component {
                   exact
                   path={"/palette/new"}
                   render={(routesProps) => (
-                    <div className="page">
                       <NewPaletteForm
                         saveNewPalette={this.savePalette}
                         {...routesProps}
                         palettes={this.state.palettes}
                       />
-                    </div>
                   )}
                 />
                 <Route
                   exact
                   path={"/"}
                   render={(routesProps) => (
-                    <Page className="page">
                       <PaletteList
                         palette={this.state.palettes}
                         {...routesProps}
                         deletePalette={this.deletePalette}
                       />
-                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path={"/palette/:id"}
                   render={(routesProps) => (
-                    <Page className="page">
                       <Palette
                         palette={generatePalette(
                           this.findPalette(routesProps.match.params.id)
                         )}
                       />
-                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path={"/palette/:paletteId/:colorId"}
                   render={(routesProps) => (
-                    <Page className="page">
                       <SinglePalette
                         palette={generatePalette(
                           this.findPalette(routesProps.match.params.paletteId)
                         )}
                         colorId={routesProps.match.params.colorId}
                       />
-                    </Page>
                   )}
                 />
+                {/* When the url is wrong */}
                  <Route
                    render={(routesProps) => (
-                    <Page className="page">
                       <PaletteList
                         palette={this.state.palettes}
                         {...routesProps}
                         deletePalette={this.deletePalette}
                       />
-                    </Page>
                   )}
                 />
               </Switch>

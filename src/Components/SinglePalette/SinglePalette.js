@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
+import Page from '../Page/Page'
 
 /* ---------- Child COmponent ---------- */
 import ColorBox from "../ColorBox/ColorBox";
@@ -10,6 +11,7 @@ import PaletteFooter from "../PaletteFooter/PaletteFooter";
 
 /* ---------- Styles ---------- */
 import styles from "../../Styles/PaletteStyles";
+
 
 /* ---------- Component ---------- */
 
@@ -64,19 +66,22 @@ class SinglePalette extends Component {
     ));
 
     return (
-      <div className={classes.palette}>
-        <Navbar handleChange={this.changeFormat} showingAllColors={false} />
-        <div className={classes.paletteColor}>
-          {colorBoxes}
-          <div className={classes.goBack}>
-            <Link className="back-button" to={`/palette/${id}`}>
-              {" "}
-              GO BACK
-            </Link>
+      <Page>
+        <div className={classes.palette}>
+          <Navbar handleChange={this.changeFormat} showingAllColors={false} />
+          <div className={classes.paletteColor}>
+            {colorBoxes}
+            <div className={classes.goBack}>
+              <Link className="back-button" to={`/palette/${id}`}>
+                {" "}
+                GO BACK
+              </Link>
+            </div>
           </div>
+          <PaletteFooter paletteName={paletteName} emoji={emoji} />
         </div>
-        <PaletteFooter paletteName={paletteName} emoji={emoji} />
-      </div>
+
+      </Page>
     );
   }
 }

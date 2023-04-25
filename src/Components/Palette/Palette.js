@@ -4,7 +4,7 @@ import ColorBox from "../ColorBox/ColorBox";
 import Navbar from "../Navbar/Navbar";
 import PaletteFooter from "../PaletteFooter/PaletteFooter";
 import { withStyles } from "@material-ui/styles";
-
+import Page from '../Page/Page'
 /* ---------- Styles ---------- */
 import styles from "../../Styles/PaletteStyles";
 
@@ -58,17 +58,20 @@ class Palette extends Component {
     ));
 
     return (
-      <div className={classes.palette}>
-        <Navbar
-          level={level}
-          changeLevel={this.changeLevel}
-          handleChange={this.changeFormat}
-          showingAllColors={true}
-        />
-        <div className={classes.paletteColor}>{colorBoxes}</div>
-        
-        <PaletteFooter paletteName={paletteName} emoji={emoji} />
-      </div>
+      <Page>
+        <div className={classes.palette}>
+                <Navbar
+                  level={level}
+                  changeLevel={this.changeLevel}
+                  handleChange={this.changeFormat}
+                  showingAllColors={true}
+                />
+                <div className={classes.paletteColor}>{colorBoxes}</div>
+                
+                <PaletteFooter paletteName={paletteName} emoji={emoji} />
+        </div>
+      </Page>
+      
     );
   }
 }

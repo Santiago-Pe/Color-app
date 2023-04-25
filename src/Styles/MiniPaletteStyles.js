@@ -13,9 +13,13 @@ const styles = {
        "&:hover button": {
         opacity: "1"
        },
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // justifyContent: 'space-between',
+        flex: '0 0 calc(25% - 20px)',
+        marginRight:' 20px',
+        marginBottom: '20px',
+        minWidth: '250px'
        
     },
     colors: {

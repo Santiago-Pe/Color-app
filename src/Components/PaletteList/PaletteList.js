@@ -13,6 +13,7 @@ import { Check, Close } from "@material-ui/icons";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
+import Page from '../Page/Page'
 
 /* ---------- Child Component ---------- */
 import MiniPalette from "../MiniPalette/MiniPalette";
@@ -68,6 +69,8 @@ class PaletteList extends Component {
     const { palette, classes } = this.props;
     const { openDeleteDialog } = this.state;
     return (
+      <Page>
+
       <div className={classes.root}>
         <div className={classes.container}>
           <nav className={classes.nav}>
@@ -118,6 +121,7 @@ class PaletteList extends Component {
           </List>
         </Dialog>
       </div>
+      </Page>
     );
   }
 }

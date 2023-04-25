@@ -2,6 +2,10 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
+  background-image: url('./Styles/sun-tornado.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
       
 }
 
