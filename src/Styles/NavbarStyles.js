@@ -5,8 +5,11 @@ const styles = {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        height: "10vh",
-        backgroundColor: "white"
+        height: "7vh",
+        backgroundColor: "white",
+        [media_query.down('md')]:{
+            height: "5%",
+        },
     },
     logo:{
         marginRight: "15px",
@@ -22,10 +25,14 @@ const styles = {
             color:  "black",
         },
         "& .material-icons":{
-            marginLeft: "5px"
-        },
-        /* ---------- Mobile ---------- */
+            marginLeft: "5px",
+            /* ---------- Mobile ---------- */
+            [media_query.down('sm')]:{
+                marginLeft: "0",
+            }
        
+        },
+        
     },
     logoTitle:{
          [media_query.down('md')]:{
@@ -62,7 +69,22 @@ const styles = {
         marginRight: "1rem",
         "& .material-icons": {
             cursor: "pointer"
+        },
+        '& div':{
+            fontSize: '1rem',
+            /* ---------- Mobile ---------- */
+            [media_query.down('sm')]:{
+                fontSize: '0.8rem',
+            }
         }
+    },
+    label:{
+        fontSize: '1rem',
+         /* ---------- Mobile ---------- */
+         [media_query.down('sm')]:{
+            fontSize: '0.8rem',
+        }
+
     }
 
 

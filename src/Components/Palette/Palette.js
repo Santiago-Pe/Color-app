@@ -65,10 +65,8 @@ class Palette extends Component {
           handleChange={this.changeFormat}
           showingAllColors={true}
         />
-
-        {/* navbar goes here */}
         <div className={classes.paletteColor}>{colorBoxes}</div>
-        {/* FOOTER */}
+        
         <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );

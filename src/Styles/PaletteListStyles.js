@@ -11,17 +11,17 @@ const styles =  {
     }
   },
     root: {
-       height: "100vh",
+
        display: "flex",
-       alignItems: "flex-start",
+       flexDirection: 'column',
+       alignItems: "center",
        justifyContent: "center",
-       padding: "2rem",
-       //width: "100%",
+       padding: "1rem",
        backgroundColor: '#0000FF',
-        backgroundImage: `url(${bg})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+       backgroundImage: `url(${bg})`,
+       backgroundPosition: 'center',
+       backgroundRepeat: 'no-repeat',
+       backgroundSize: 'cover',
        /* ---------- Extra Small ---------- */
       [media_query.down('sm')]:{
         height: "100%",
@@ -31,7 +31,7 @@ const styles =  {
     },
     
     container: {
-        width: '52%',
+
         display: 'flex',
         alignItems: 'flex-start',
         flexWrap: 'wrap',

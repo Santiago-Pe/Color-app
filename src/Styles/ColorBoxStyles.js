@@ -46,6 +46,12 @@ import media_query from './sizes'
       textAlign: "center",
       lineHeight: "30px",
       textTransform: "uppercase",
+      fontSize: '1rem',
+      /* ---------- Tablete ---------- */
+      [media_query.down('xs')]:{
+        height: "100%",
+      },
+      
     },
     copyOverlay: {
       opacity: "0",

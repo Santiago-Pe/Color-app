@@ -4,10 +4,12 @@ const styles = {
     palette: {
       height: "100vh",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
+      overflowY: 'scroll',
+      overflowX: 'hidden',
     },
     paletteColor:{
-      height: "90%"
+      height: "86vh",
     },
     goBack:{
       width: "20%",
@@ -54,6 +56,6 @@ const styles = {
         height: '10%'
       }
     },
-  }
+}
   
   export default styles;
