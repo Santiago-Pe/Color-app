@@ -7,6 +7,8 @@ const styles = {
       flexDirection: "column",
       overflowY: 'scroll',
       overflowX: 'hidden',
+      width: '100%',
+      backgroundColor: 'white'
     },
     paletteColor:{
       height: "86vh",

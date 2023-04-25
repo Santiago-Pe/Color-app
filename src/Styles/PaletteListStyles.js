@@ -1,5 +1,4 @@
 import media_query from './sizes';
-import bg from './sun-tornado.svg'
 const styles =  {
   '@global': {
     'fade-exit':{
@@ -16,11 +15,6 @@ const styles =  {
        alignItems: "center",
        justifyContent: "center",
        padding: "1rem",
-       backgroundColor: '#0000FF',
-       backgroundImage: `url(${bg})`,
-       backgroundPosition: 'center',
-       backgroundRepeat: 'no-repeat',
-       backgroundSize: 'cover',
 
     },
     
