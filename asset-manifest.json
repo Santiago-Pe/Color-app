@@ -1,16 +1,14 @@
 {
   "files": {
     "main.css": "/Color-app/static/css/main.86f531c0.css",
-    "main.js": "/Color-app/static/js/main.70a9de43.js",
-    "static/js/787.3e9c64e7.chunk.js": "/Color-app/static/js/787.3e9c64e7.chunk.js",
+    "main.js": "/Color-app/static/js/main.b33d55cd.js",
     "static/media/sun-tornado.svg": "/Color-app/static/media/sun-tornado.fb3bf8ba1b7735851bc7.svg",
     "index.html": "/Color-app/index.html",
     "main.86f531c0.css.map": "/Color-app/static/css/main.86f531c0.css.map",
-    "main.70a9de43.js.map": "/Color-app/static/js/main.70a9de43.js.map",
-    "787.3e9c64e7.chunk.js.map": "/Color-app/static/js/787.3e9c64e7.chunk.js.map"
+    "main.b33d55cd.js.map": "/Color-app/static/js/main.b33d55cd.js.map"
   },
   "entrypoints": [
     "static/css/main.86f531c0.css",
-    "static/js/main.70a9de43.js"
+    "static/js/main.b33d55cd.js"
   ]
 }
